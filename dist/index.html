@@ -66,7 +66,7 @@
   <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-labelledby="cart-title">
     <div class="drawer-head"><div><p class="eyebrow">VOTRE SÉLECTION</p><h2 id="cart-title">Panier <span id="drawer-count">0</span></h2></div><button class="close-button" id="cart-close" aria-label="Fermer le panier">×</button></div>
     <div class="cart-items" id="cart-items"></div>
-    <div class="cart-empty" id="cart-empty"><p>Votre panier attend<br>sa première pièce.</p><button data-close-cart>Voir la sélection</button></div>
+    <div class="cart-empty" id="cart-empty"><img class="state-mascot state-mascot-cart" src="assets/folki-mascot.svg" alt="" aria-hidden="true"><p>Votre panier attend<br>sa première pièce.</p><button data-close-cart>Voir la sélection</button></div>
     <div class="cart-summary" id="cart-summary">
       <div><span>Sous-total</span><strong id="subtotal">0,00 €</strong></div>
       <div><span>Livraison</span><strong id="shipping">Offerte</strong></div>
@@ -111,7 +111,7 @@
           </div>
         </div>
       </div>
-      <div class="success-view" id="success-view" hidden aria-live="polite"><div class="confetti" id="confetti" aria-hidden="true"></div><div class="success-mark"><span>✓</span></div><p class="eyebrow">COMMANDE CONFIRMÉE</p><h2>Merci, <span id="customer-name"></span>.</h2><p>Votre commande virtuelle <strong id="order-number"></strong> est confirmée. Un récapitulatif fictif a été préparé.</p><button class="primary-cta" id="continue-button">Continuer mes achats <span>→</span></button></div>
+      <div class="success-view" id="success-view" hidden aria-live="polite"><div class="confetti" id="confetti" aria-hidden="true"></div><img class="state-mascot state-mascot-success" src="assets/folki-mascot.svg" alt="" aria-hidden="true"><div class="success-mark"><span>✓</span></div><p class="eyebrow">COMMANDE CONFIRMÉE</p><h2>Merci, <span id="customer-name"></span>.</h2><p>Votre commande virtuelle <strong id="order-number"></strong> est confirmée. Un récapitulatif fictif a été préparé.</p><button class="primary-cta" id="continue-button">Continuer mes achats <span>→</span></button></div>
     </div>
   </div>
 
@@ -124,9 +124,7 @@
       <button class="mascot-link" id="mascot-shop">Voir la sélection <span>→</span></button>
     </div>
     <button class="mascot-toggle" id="mascot-toggle" type="button" aria-expanded="false" aria-controls="mascot-bubble" aria-label="Ouvrir l’assistant FOLKI">
-      <span class="mascot-spark" aria-hidden="true">✦</span>
-      <span class="mascot-mark" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><path d="M13 19 9 9l10 5M35 19l4-10-10 5"/><circle cx="24" cy="25" r="13"/><circle cx="19" cy="24" r="1.5" fill="currentColor" stroke="none"/><circle cx="29" cy="24" r="1.5" fill="currentColor" stroke="none"/><path d="M20 30c2.5 2.5 5.5 2.5 8 0"/><path d="M13 36c5 4 17 4 22 0"/></svg></span>
-      <span class="mascot-scarf" aria-hidden="true"></span>
+      <img class="mascot-art" src="assets/folki-mascot.svg" alt="" aria-hidden="true">
     </button>
   </aside>
   <script src="app.js"></script>

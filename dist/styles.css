@@ -48,3 +48,21 @@
 @media(max-width:520px){.folki-mascot{right:14px;bottom:14px}.mascot-toggle{width:64px;height:64px}.mascot-mark{width:40px;height:40px}.mascot-scarf{bottom:11px;transform:scale(.84) rotate(-8deg)}}
 @media(prefers-reduced-motion:reduce){.mascot-toggle:before,.mascot-mark,.mascot-spark{animation:none}.mascot-bubble{transition:none}}
 .product-info p,.cart-item p,.remove,.checkout-layout small,.form-section-title p{color:#66676b}
+
+/* User-provided FOLKI mascot — shared by helpful empty, error and success states. */
+.mascot-toggle{overflow:hidden;padding:0}
+.mascot-mark,.mascot-scarf,.mascot-spark{display:none}
+.mascot-art{display:block;width:86px;height:118px;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 9px 10px rgba(0,0,0,.26));transform:translateY(7px) rotate(-2deg);animation:mascot-art-float 3.5s ease-in-out infinite}
+.mascot-toggle:hover .mascot-art{transform:translateY(1px) rotate(2deg) scale(1.04)}
+.state-mascot{display:block;object-fit:contain;pointer-events:none;filter:drop-shadow(0 14px 18px rgba(8,9,11,.15))}
+.state-mascot-cart{width:144px;height:164px;margin:0 auto 18px;animation:mascot-state-in .55s cubic-bezier(.16,1,.3,1) both,mascot-state-float 4.2s ease-in-out .55s infinite}
+.state-mascot-error{width:118px;height:138px;margin:0 auto 18px;animation:mascot-state-in .45s cubic-bezier(.16,1,.3,1) both,mascot-state-float 4.2s ease-in-out .45s infinite}
+.state-mascot-success{width:112px;height:132px;margin:0 auto 4px;animation:mascot-state-in .6s cubic-bezier(.16,1,.3,1) both,mascot-state-float 4.2s ease-in-out .6s infinite}
+.no-results{grid-column:1/-1;padding:62px 0 72px;text-align:center;color:var(--ink);animation:success-copy-in .35s ease-out both}
+.no-results p{margin:0 0 14px;font:600 1.55rem/1.1 var(--display);letter-spacing:-.035em}
+.no-results button{border:0;border-bottom:1px solid var(--ink);background:none;color:var(--ink);padding:8px 0;font-weight:700;font-size:.8rem}
+.no-results button span{display:inline-block;margin-left:16px;font-size:1.05rem;transition:transform .15s ease-out}
+.no-results button:hover span{transform:translate(3px,-3px)}
+@keyframes mascot-art-float{0%,100%{transform:translateY(7px) rotate(-2deg)}50%{transform:translateY(1px) rotate(1deg)}}@keyframes mascot-state-in{from{opacity:0;transform:translateY(18px) scale(.9) rotate(-4deg)}to{opacity:1;transform:none}}@keyframes mascot-state-float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(1deg)}}
+@media(max-width:520px){.mascot-art{width:70px;height:100px}.state-mascot-cart{width:124px;height:144px}.state-mascot-error{width:104px;height:124px}.state-mascot-success{width:96px;height:114px}}
+@media(prefers-reduced-motion:reduce){.mascot-art,.state-mascot{animation:none}.mascot-bubble{transition:none}}

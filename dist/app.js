@@ -23,7 +23,7 @@ function renderProducts() {
         <button class="quick-add" data-add="${p.id}" aria-label="Ajouter ${p.name} au panier">+</button>
       </div>
       <div class="product-info"><h3>${p.name}</h3><p>${p.detail}</p><span class="price">${euro.format(p.price)}</span></div>
-    </article>`).join("") : `<p class="no-results">Aucun objet ne correspond à votre recherche.</p>`;
+    </article>`).join("") : `<div class="no-results"><img class="state-mascot state-mascot-error" src="assets/folki-mascot.svg" alt="" aria-hidden="true"><p>Aucun objet ne correspond à votre recherche.</p><button type="button" data-reset-search>Réinitialiser la recherche <span>↗</span></button></div>`;
 }
 
 function cartDetails() {
@@ -138,14 +138,20 @@ function showToast(message) {
 document.addEventListener("click", (event) => {
   const add = event.target.closest("[data-add]");
   const qty = event.target.closest("[data-qty]");
-  const remove = event.target.closest("[data-remove]");
-  const filter = event.target.closest("[data-filter]");
+ const remove = event.target.closest("[data-remove]");
+ const filter = event.target.closest("[data-filter]");
+  const resetSearch = event.target.closest("[data-reset-search]");
   if (add) addToCart(Number(add.dataset.add));
   if (qty) changeQuantity(Number(qty.dataset.id), Number(qty.dataset.qty));
   if (remove) { cart = cart.filter((item) => item.id !== Number(remove.dataset.remove)); saveCart(); }
   if (filter) {
     activeFilter = filter.dataset.filter;
     document.querySelectorAll(".filter").forEach((button) => button.classList.toggle("active", button === filter));
+   renderProducts();
+ }
+  if (resetSearch) {
+    query = "";
+    $("#search-input").value = "";
     renderProducts();
   }
   if (event.target.closest("[data-close-cart]")) closeCart();
