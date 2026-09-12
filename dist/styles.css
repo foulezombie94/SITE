@@ -183,3 +183,14 @@ body.loaded .hero-visual{animation:hero-visual-in .7s .18s cubic-bezier(.16,1,.3
   .hero-price small{margin-left:auto}
   .hero-card-bottom{font-size:.52rem}
 }
+
+/* Le hero doit être une seule surface continue, sans carte flottante ni carré photo. */
+.hero,.hero-card{width:100%;max-width:none!important;margin:0;border-radius:0!important}
+.hero-card{min-height:100svh;padding-left:clamp(24px,5vw,84px);padding-right:clamp(24px,5vw,84px)}
+.hero-card-nav{min-height:46px}
+.hero-card-label{display:inline-flex;align-items:center;font-size:1.5rem}
+.hero-visual{min-height:520px;overflow:visible}
+.hero-visual img{inset:-14% -18%;width:136%;height:128%;object-fit:cover;object-position:center;opacity:.98;filter:saturate(.68) contrast(1.3) brightness(.72);-webkit-mask-image:radial-gradient(ellipse 49% 66% at center,rgba(0,0,0,1) 30%,rgba(0,0,0,.92) 45%,rgba(0,0,0,.58) 59%,transparent 78%);mask-image:radial-gradient(ellipse 49% 66% at center,rgba(0,0,0,1) 30%,rgba(0,0,0,.92) 45%,rgba(0,0,0,.58) 59%,transparent 78%)}
+.hero-visual::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 45% 58% at center,transparent 36%,rgba(8,12,26,.24) 63%,rgba(8,12,26,.7) 100%);pointer-events:none}
+@media(max-width:980px){.hero-visual{min-height:360px}.hero-visual img{inset:-10% -14%;width:128%;height:120%}}
+@media(max-width:780px){.hero-card{min-height:100svh}.hero-visual{min-height:270px}.hero-visual img{inset:-8% -12%;width:124%;height:116%}}
