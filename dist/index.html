@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FOLKI — objets essentiels, design affirmé et livraison offerte dès 100 €.">
+  <title>FOLKI — Objets du quotidien, mieux choisis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231120ff'/%3E%3Cpath d='M8 7h17v5H14v4h9v5h-9v5H8z' fill='%23d7ff36'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement">Livraison offerte dès 100 € <span>Retours sous 30 jours</span></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="FOLKI, accueil">FOLKI<span>•</span></a>
+    <nav aria-label="Navigation principale">
+      <a href="#collection">Nouveautés</a>
+      <a href="#collection">La sélection</a>
+      <a href="#manifeste">Notre vision</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="search-toggle" aria-label="Rechercher" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg></button>
+      <button class="cart-button" id="cart-toggle" aria-label="Ouvrir le panier">Panier <span id="cart-count">0</span></button>
+    </div>
+  </header>
+  <div class="search-panel" id="search-panel" aria-hidden="true"><label for="search-input">Que cherchez-vous ?</label><div><input id="search-input" type="search" placeholder="Casque, sac, parfum…" autocomplete="off"><button id="search-close" aria-label="Fermer la recherche">×</button></div></div>
+
+  <main id="top">
+    <section class="hero">
+      <img src="https://images.unsplash.com/photo-1565259118992-d0dce38f9f26?auto=format&fit=crop&w=2200&q=88" alt="Casque, montre et accessoires disposés sur un textile sombre" fetchpriority="high">
+      <div class="hero-copy">
+        <p class="eyebrow">ÉDITION 01 — L'ESSENTIEL</p>
+        <h1>Moins d’objets.<br><em>Plus d’allure.</em></h1>
+        <p>Une sélection pointue d’accessoires utiles, tactiles et faits pour durer.</p>
+        <a class="primary-cta" href="#collection">Découvrir la sélection <span>↘</span></a>
+      </div>
+      <p class="hero-index">01 / 04</p>
+    </section>
+
+    <section class="collection" id="collection">
+      <div class="section-heading">
+        <div><p class="eyebrow">SHOP</p><h2>La sélection</h2></div>
+        <p>Des pièces choisies une à une.<br>Rien de plus, rien de trop.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filtrer les produits">
+        <button class="filter active" data-filter="all">Tout <span>06</span></button>
+        <button class="filter" data-filter="tech">Tech <span>02</span></button>
+        <button class="filter" data-filter="style">Style <span>02</span></button>
+        <button class="filter" data-filter="maison">Maison <span>02</span></button>
+      </div>
+      <div class="product-grid" id="product-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="manifesto" id="manifeste">
+      <p class="eyebrow">NOTRE VISION</p>
+      <p class="manifesto-copy">Le quotidien n’a pas besoin de plus.<br>Il a besoin de <em>mieux.</em></p>
+      <div class="manifesto-notes"><span>01 — Choisi avec exigence</span><span>02 — Conçu pour durer</span><span>03 — Expédié avec soin</span></div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#top">FOLKI<span>•</span></a><p>Objets du quotidien, mieux choisis.</p><p>© 2026 FOLKI</p></footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-labelledby="cart-title">
+    <div class="drawer-head"><div><p class="eyebrow">VOTRE SÉLECTION</p><h2 id="cart-title">Panier <span id="drawer-count">0</span></h2></div><button class="close-button" id="cart-close" aria-label="Fermer le panier">×</button></div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-empty" id="cart-empty"><p>Votre panier attend<br>sa première pièce.</p><button data-close-cart>Voir la sélection</button></div>
+    <div class="cart-summary" id="cart-summary">
+      <div><span>Sous-total</span><strong id="subtotal">0,00 €</strong></div>
+      <div><span>Livraison</span><strong id="shipping">Offerte</strong></div>
+      <div class="total"><span>Total</span><strong id="total">0,00 €</strong></div>
+      <button class="checkout-button" id="checkout-button">Commander <span>→</span></button>
+      <p>Paiement 100 % simulé — aucune carte réelle ne sera débitée.</p>
+    </div>
+  </aside>
+
+  <div class="modal" id="checkout-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="checkout-title">
+    <div class="checkout-panel">
+      <button class="close-button" id="checkout-close" aria-label="Fermer">×</button>
+      <div id="checkout-form-view">
+        <p class="eyebrow">PAIEMENT SIMULÉ</p><h2 id="checkout-title">Finaliser la commande</h2>
+        <div class="checkout-layout">
+          <form id="checkout-form">
+            <h3>Vos coordonnées</h3>
+            <div class="field-row"><label>Prénom<input name="firstname" required autocomplete="given-name" placeholder="Lina"></label><label>Nom<input name="lastname" required autocomplete="family-name" placeholder="Martin"></label></div>
+            <label>E-mail<input type="email" name="email" required autocomplete="email" placeholder="lina@exemple.fr"></label>
+            <label>Adresse<input name="address" required autocomplete="street-address" placeholder="12 rue des Fleurs"></label>
+            <div class="field-row"><label>Code postal<input name="postal" required inputmode="numeric" pattern="[0-9]{5}" placeholder="75010"></label><label>Ville<input name="city" required autocomplete="address-level2" placeholder="Paris"></label></div>
+            <h3>Paiement virtuel</h3>
+            <label>Numéro de carte<input name="card" required inputmode="numeric" value="4242 4242 4242 4242" aria-describedby="demo-card"><small id="demo-card">Carte de démonstration préremplie</small></label>
+            <div class="field-row"><label>Expiration<input name="expiry" required value="12/30"></label><label>CVC<input name="cvc" required value="123" inputmode="numeric"></label></div>
+            <button class="pay-button" type="submit">Payer virtuellement <strong id="pay-total">0,00 €</strong></button>
+          </form>
+          <div class="order-review"><h3>Votre commande</h3><div id="review-items"></div><div class="review-total"><span>Total</span><strong id="review-total">0,00 €</strong></div></div>
+        </div>
+      </div>
+      <div class="success-view" id="success-view" hidden><div class="success-mark">✓</div><p class="eyebrow">COMMANDE CONFIRMÉE</p><h2>Merci, <span id="customer-name"></span>.</h2><p>Votre commande virtuelle <strong id="order-number"></strong> est confirmée. Un récapitulatif fictif a été préparé.</p><button class="primary-cta" id="continue-button">Continuer mes achats <span>→</span></button></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
