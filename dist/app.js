@@ -1,6 +1,8 @@
 const products = [
+  { id: 2, name: "Montre Ligne Azur", detail: "Acier brossé · 38 mm", price: 149, category: "style", icon: "⌚", image: "assets/watch-azure.webp", href: "/montres/azur", accent: "#3d86ff", badge: "BEST-SELLER" },
+  { id: 7, name: "Montre Ligne Émeraude", detail: "Cuir brun · Or rose · 38 mm", price: 169, category: "style", icon: "⌚", image: "assets/watch-emerald.webp", href: "/montres/emeraude", accent: "#16875d", badge: "NOUVEAU" },
+  { id: 8, name: "Montre Ligne Minuit", detail: "Cuir noir · Acier noir · 38 mm", price: 159, category: "style", icon: "⌚", image: "assets/watch-burgundy.webp", href: "/montres/minuit", accent: "#8c243e", badge: "ÉDITION 01" },
   { id: 1, name: "Casque Studio 01", detail: "Noir mat · Autonomie 40 h", price: 189, category: "tech", icon: "🎧", accent: "#1120ff", badge: "NOUVEAU" },
-  { id: 2, name: "Montre Ligne", detail: "Acier brossé · 38 mm", price: 149, category: "style", icon: "⌚", accent: "#d7ff36", badge: "BEST-SELLER" },
   { id: 3, name: "Sac Forme", detail: "Écru · Cuir recyclé", price: 119, category: "style", icon: "👜", accent: "#ff6334" },
   { id: 4, name: "Lampe Halo", detail: "Aluminium · LED chaude", price: 79, category: "maison", icon: "💡", accent: "#ffc928", badge: "ÉDITION 01" },
   { id: 5, name: "Enceinte Bloc", detail: "Bleu · Bluetooth 5.3", price: 99, category: "tech", icon: "🔊", accent: "#7b59ff" },
@@ -48,15 +50,17 @@ const heroSlides = [
 
 function renderProducts() {
   const visible = products.filter((p) => (activeFilter === "all" || p.category === activeFilter) && p.name.toLowerCase().includes(query.toLowerCase()));
-  $("#product-grid").innerHTML = visible.length ? visible.map((p) => `
-    <article class="product-card" data-category="${p.category}" style="--i:${visible.indexOf(p)}">
+  $("#product-grid").innerHTML = visible.length ? visible.map((p, index) => {
+    const artwork = `${p.badge ? `<span class="badge">${p.badge}</span>` : ""}${p.image ? `<img class="product-image" src="${p.image}" alt="${p.name}" loading="lazy">` : `<span class="product-icon" aria-hidden="true">${p.icon}</span>`}`;
+    const info = `<h3>${p.name}</h3><p>${p.detail}</p><span class="price">${euro.format(p.price)}</span>`;
+    return `<article class="product-card${p.href ? " watch-card" : ""}" data-category="${p.category}" style="--i:${index}">
       <div class="product-visual" style="--accent:${p.accent}">
-        ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
-        <span class="product-icon" aria-hidden="true">${p.icon}</span>
+        ${p.href ? `<a class="product-visual-link" href="${p.href}" aria-label="Voir ${p.name}">${artwork}</a>` : artwork}
         <button class="quick-add" data-add="${p.id}" aria-label="Ajouter ${p.name} au panier">+</button>
       </div>
-      <div class="product-info"><h3>${p.name}</h3><p>${p.detail}</p><span class="price">${euro.format(p.price)}</span></div>
-    </article>`).join("") : `<div class="no-results"><img class="state-mascot state-mascot-error" src="assets/folki-mascot.svg" alt="" aria-hidden="true"><p>Aucun objet ne correspond à votre recherche.</p><button type="button" data-reset-search>Réinitialiser la recherche <span>↗</span></button></div>`;
+      ${p.href ? `<a class="product-info product-info-link" href="${p.href}">${info}</a>` : `<div class="product-info">${info}</div>`}
+    </article>`;
+  }).join("") : `<div class="no-results"><img class="state-mascot state-mascot-error" src="assets/folki-mascot.svg" alt="" aria-hidden="true"><p>Aucun objet ne correspond à votre recherche.</p><button type="button" data-reset-search>Réinitialiser la recherche <span>↗</span></button></div>`;
 }
 
 function cartDetails() {
@@ -248,6 +252,10 @@ document.addEventListener("keydown", (event) => { if (event.key === "Escape") { 
 
 renderProducts();
 renderCart();
+if (new URLSearchParams(window.location.search).get("cart") === "open") {
+  openCart();
+  window.history.replaceState({}, "", `${window.location.pathname}#collection`);
+}
 
 function createConfetti() {
   const container = $("#confetti");
