@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/dist/index.html" },
+    { "source": "/styles.css", "destination": "/dist/styles.css" },
+    { "source": "/app.js", "destination": "/dist/app.js" },
+    { "source": "/assets/:path*", "destination": "/dist/assets/:path*" },
+    { "source": "/:path*", "destination": "/dist/:path*" }
+  ]
+}
