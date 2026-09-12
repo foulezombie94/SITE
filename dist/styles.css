@@ -115,10 +115,10 @@
 .hero-copy .eyebrow{color:var(--lime);margin-bottom:20px}
 .hero h1{font-size:clamp(3.4rem,6.4vw,7.2rem);line-height:.86;letter-spacing:-.08em;margin-bottom:26px}
 .hero-copy>p:not(.eyebrow){max-width:360px;margin-bottom:30px;color:#c6c9d2;font-size:1rem;line-height:1.55}
-.hero-visual{position:relative;min-height:400px;border:1px solid rgba(255,255,255,.12);border-radius:22px;overflow:hidden;background:#0c1024;display:grid;place-items:center;box-shadow:0 18px 48px rgba(0,0,0,.24)}
+.hero-visual{position:relative;min-height:400px;border:0;border-radius:22px;overflow:hidden;background:transparent;display:grid;place-items:center;box-shadow:none}
 .hero-visual::before{content:"";position:absolute;width:88%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(17,32,255,.5),transparent 68%);filter:blur(8px);pointer-events:none}
-.hero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% center;outline:0;opacity:.7;filter:saturate(.72) contrast(1.12) brightness(.72);mix-blend-mode:screen;transition:transform .35s cubic-bezier(.2,0,0,1)}
-.hero-visual-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,14,.08),rgba(5,7,14,.58));pointer-events:none}
+.hero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% center;outline:0;opacity:.82;filter:saturate(.72) contrast(1.12) brightness(.78);mix-blend-mode:screen;-webkit-mask-image:radial-gradient(ellipse at center,rgba(0,0,0,1) 46%,rgba(0,0,0,.88) 61%,transparent 84%);mask-image:radial-gradient(ellipse at center,rgba(0,0,0,1) 46%,rgba(0,0,0,.88) 61%,transparent 84%);transition:transform .35s cubic-bezier(.2,0,0,1)}
+.hero-visual-shade{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 42%,rgba(5,7,14,.48) 90%);pointer-events:none}
 .hero-visual-tag{position:absolute;left:18px;top:18px;color:#d7ff36;font-size:.64rem;font-weight:700;letter-spacing:.16em}
 .hero-visual-caption{position:absolute;left:18px;bottom:18px;margin:0;color:#f4f5f5;font:500 1.05rem/1.05 var(--display);letter-spacing:-.03em}
 .hero-visual-caption em{color:var(--lime);font-style:normal}
