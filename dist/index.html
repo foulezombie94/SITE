@@ -30,7 +30,7 @@
   <main id="top">
     <section class="hero">
       <img src="https://images.unsplash.com/photo-1565259118992-d0dce38f9f26?auto=format&fit=crop&w=2200&q=88" alt="Casque, montre et accessoires disposés sur un textile sombre" fetchpriority="high">
-      <div class="hero-copy">
+      <div class="hero-copy" data-hero-sequence>
         <p class="eyebrow">ÉDITION 01 — L'ESSENTIEL</p>
         <h1>Moins d’objets.<br><em>Plus d’allure.</em></h1>
         <p>Une sélection pointue d’accessoires utiles, tactiles et faits pour durer.</p>
@@ -40,11 +40,11 @@
     </section>
 
     <section class="collection" id="collection">
-      <div class="section-heading">
+      <div class="section-heading" data-reveal>
         <div><p class="eyebrow">SHOP</p><h2>La sélection</h2></div>
         <p>Des pièces choisies une à une.<br>Rien de plus, rien de trop.</p>
       </div>
-      <div class="filters" role="group" aria-label="Filtrer les produits">
+      <div class="filters" role="group" aria-label="Filtrer les produits" data-reveal>
         <button class="filter active" data-filter="all">Tout <span>06</span></button>
         <button class="filter" data-filter="tech">Tech <span>02</span></button>
         <button class="filter" data-filter="style">Style <span>02</span></button>
@@ -54,9 +54,9 @@
     </section>
 
     <section class="manifesto" id="manifeste">
-      <p class="eyebrow">NOTRE VISION</p>
-      <p class="manifesto-copy">Le quotidien n’a pas besoin de plus.<br>Il a besoin de <em>mieux.</em></p>
-      <div class="manifesto-notes"><span>01 — Choisi avec exigence</span><span>02 — Conçu pour durer</span><span>03 — Expédié avec soin</span></div>
+      <p class="eyebrow" data-reveal>NOTRE VISION</p>
+      <p class="manifesto-copy" data-reveal>Le quotidien n’a pas besoin de plus.<br>Il a besoin de <em>mieux.</em></p>
+      <div class="manifesto-notes" data-reveal><span>01 — Choisi avec exigence</span><span>02 — Conçu pour durer</span><span>03 — Expédié avec soin</span></div>
     </section>
   </main>
 
@@ -96,7 +96,7 @@
           <div class="order-review"><h3>Votre commande</h3><div id="review-items"></div><div class="review-total"><span>Total</span><strong id="review-total">0,00 €</strong></div></div>
         </div>
       </div>
-      <div class="success-view" id="success-view" hidden><div class="success-mark">✓</div><p class="eyebrow">COMMANDE CONFIRMÉE</p><h2>Merci, <span id="customer-name"></span>.</h2><p>Votre commande virtuelle <strong id="order-number"></strong> est confirmée. Un récapitulatif fictif a été préparé.</p><button class="primary-cta" id="continue-button">Continuer mes achats <span>→</span></button></div>
+      <div class="success-view" id="success-view" hidden aria-live="polite"><div class="confetti" id="confetti" aria-hidden="true"></div><div class="success-mark"><span>✓</span></div><p class="eyebrow">COMMANDE CONFIRMÉE</p><h2>Merci, <span id="customer-name"></span>.</h2><p>Votre commande virtuelle <strong id="order-number"></strong> est confirmée. Un récapitulatif fictif a été préparé.</p><button class="primary-cta" id="continue-button">Continuer mes achats <span>→</span></button></div>
     </div>
   </div>
 

@@ -16,7 +16,7 @@ const $ = (selector) => document.querySelector(selector);
 function renderProducts() {
   const visible = products.filter((p) => (activeFilter === "all" || p.category === activeFilter) && p.name.toLowerCase().includes(query.toLowerCase()));
   $("#product-grid").innerHTML = visible.length ? visible.map((p) => `
-    <article class="product-card" data-category="${p.category}">
+    <article class="product-card" data-category="${p.category}" style="--i:${visible.indexOf(p)}">
       <div class="product-visual" style="--accent:${p.accent}">
         ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
         <span class="product-icon" aria-hidden="true">${p.icon}</span>
@@ -43,7 +43,17 @@ function addToCart(id) {
   const line = cart.find((item) => item.id === id);
   if (line) line.qty += 1; else cart.push({ id, qty: 1 });
   saveCart();
+  animateAddButton(id);
   showToast(`${products.find((p) => p.id === id).name} ajouté au panier`);
+}
+
+function animateAddButton(id) {
+  const button = document.querySelector(`[data-add="${id}"]`);
+  if (!button) return;
+  const original = button.textContent;
+  button.textContent = "✓";
+  button.classList.add("added");
+  window.setTimeout(() => { button.textContent = original; button.classList.remove("added"); }, 850);
 }
 
 function changeQuantity(id, delta) {
@@ -59,6 +69,8 @@ function renderCart() {
   const count = cart.reduce((sum, item) => sum + item.qty, 0);
   const subtotal = cartTotal();
   $("#cart-count").textContent = count;
+  $("#cart-count").classList.remove("cart-count-pop");
+  requestAnimationFrame(() => $("#cart-count").classList.add("cart-count-pop"));
   $("#drawer-count").textContent = count;
   $("#cart-empty").hidden = details.length > 0;
   $("#cart-summary").hidden = details.length === 0;
@@ -153,17 +165,66 @@ $("#search-input").addEventListener("input", (event) => { query = event.target.v
 $("#checkout-form").addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
-  $("#customer-name").textContent = data.get("firstname");
-  $("#order-number").textContent = `FOL-${String(Date.now()).slice(-6)}`;
-  $("#checkout-form-view").hidden = true;
-  $("#success-view").hidden = false;
-  cart = [];
-  saveCart();
+  const payButton = event.submitter;
+  payButton.classList.add("processing");
+  payButton.innerHTML = "Validation en cours";
+  window.setTimeout(() => {
+    $("#customer-name").textContent = data.get("firstname");
+    $("#order-number").textContent = `FOL-${String(Date.now()).slice(-6)}`;
+    $("#checkout-form-view").hidden = true;
+    const success = $("#success-view");
+    success.hidden = false;
+    success.classList.remove("celebrate");
+    createConfetti();
+    requestAnimationFrame(() => success.classList.add("celebrate"));
+    payButton.classList.remove("processing");
+    payButton.innerHTML = `Payer virtuellement <strong id="pay-total">0,00 €</strong>`;
+    cart = [];
+    saveCart();
+  }, 700);
 });
 document.addEventListener("keydown", (event) => { if (event.key === "Escape") { closeCart(); closeCheckout(); $("#search-panel").classList.remove("open"); } });
 
 renderProducts();
 renderCart();
+
+function createConfetti() {
+  const container = $("#confetti");
+  const colors = ["#1120ff", "#d7ff36", "#ff6334", "#08090b", "#39d5c3"];
+  container.innerHTML = Array.from({ length: 28 }, (_, i) => {
+    const angle = (Math.PI * 2 * i) / 28;
+    const distance = 120 + (i % 5) * 26;
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance + 70;
+    return `<i style="--confetti:${colors[i % colors.length]};--x:${x.toFixed(0)}px;--y:${y.toFixed(0)}px;--r:${180 + i * 47}deg;--delay:${(i % 4) * 22}ms;--duration:${700 + (i % 6) * 55}ms"></i>`;
+  }).join("");
+}
+
+function initMotion() {
+  requestAnimationFrame(() => document.body.classList.add("loaded"));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("revealed");
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.14 });
+  document.querySelectorAll("[data-reveal]").forEach((element) => observer.observe(element));
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && window.matchMedia("(pointer: fine)").matches) {
+    const hero = $(".hero");
+    const image = hero.querySelector("img");
+    hero.addEventListener("pointermove", (event) => {
+      const rect = hero.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - .5;
+      const y = (event.clientY - rect.top) / rect.height - .5;
+      image.style.transform = `scale(1.035) translate(${(-x * 10).toFixed(1)}px, ${(-y * 8).toFixed(1)}px)`;
+    });
+    hero.addEventListener("pointerleave", () => { image.style.transform = "scale(1.025)"; });
+  }
+}
+
+initMotion();
 
 function registerAgentTools() {
   const context = document.modelContext;
