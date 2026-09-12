@@ -1,4 +1,12 @@
 {
   "version": 2,
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/styles.css", "destination": "/styles.css" },
+    { "source": "/app.js", "destination": "/app.js" },
+    { "source": "/assets/:path*", "destination": "/assets/:path*" },
+    { "source": "/404", "destination": "/404.html" },
+    { "source": "/:path*", "destination": "/404.html" }
+  ]
 }
