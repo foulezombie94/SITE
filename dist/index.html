@@ -78,22 +78,37 @@
 
   <div class="modal" id="checkout-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="checkout-title">
     <div class="checkout-panel">
-      <button class="close-button" id="checkout-close" aria-label="Fermer">×</button>
+      <div class="checkout-topbar">
+        <span class="checkout-logo">FOLKI<span>•</span></span>
+        <ol class="checkout-progress" id="checkout-progress" aria-label="Progression de la commande">
+          <li class="complete"><span>✓</span>Panier</li>
+          <li class="active"><span>2</span>Paiement</li>
+          <li><span>3</span>Confirmation</li>
+        </ol>
+        <button class="close-button" id="checkout-close" aria-label="Fermer">×</button>
+      </div>
       <div id="checkout-form-view">
-        <p class="eyebrow">PAIEMENT SIMULÉ</p><h2 id="checkout-title">Finaliser la commande</h2>
-        <div class="checkout-layout">
+        <div class="checkout-stage">
+          <div class="checkout-heading"><h2 id="checkout-title">Finaliser la commande</h2><p>Tout est prêt. Vérifiez vos informations puis confirmez votre achat virtuel.</p></div>
+          <div class="checkout-layout">
           <form id="checkout-form">
-            <h3>Vos coordonnées</h3>
-            <div class="field-row"><label>Prénom<input name="firstname" required autocomplete="given-name" placeholder="Lina"></label><label>Nom<input name="lastname" required autocomplete="family-name" placeholder="Martin"></label></div>
-            <label>E-mail<input type="email" name="email" required autocomplete="email" placeholder="lina@exemple.fr"></label>
-            <label>Adresse<input name="address" required autocomplete="street-address" placeholder="12 rue des Fleurs"></label>
-            <div class="field-row"><label>Code postal<input name="postal" required inputmode="numeric" pattern="[0-9]{5}" placeholder="75010"></label><label>Ville<input name="city" required autocomplete="address-level2" placeholder="Paris"></label></div>
-            <h3>Paiement virtuel</h3>
-            <label>Numéro de carte<input name="card" required inputmode="numeric" value="4242 4242 4242 4242" aria-describedby="demo-card"><small id="demo-card">Carte de démonstration préremplie</small></label>
-            <div class="field-row"><label>Expiration<input name="expiry" required value="12/30"></label><label>CVC<input name="cvc" required value="123" inputmode="numeric"></label></div>
-            <button class="pay-button" type="submit">Payer virtuellement <strong id="pay-total">0,00 €</strong></button>
+            <section class="form-section">
+              <div class="form-section-title"><span class="line-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20v-2.5A4.5 4.5 0 0 1 8.5 13h7a4.5 4.5 0 0 1 4.5 4.5V20M12 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/></svg></span><div><h3>Coordonnées</h3><p>Pour préparer votre confirmation de commande.</p></div></div>
+              <div class="field-row"><label>Prénom<input name="firstname" required autocomplete="given-name" placeholder="Lina"></label><label>Nom<input name="lastname" required autocomplete="family-name" placeholder="Martin"></label></div>
+              <label>E-mail<input type="email" name="email" required autocomplete="email" placeholder="lina@exemple.fr"></label>
+              <label>Adresse<input name="address" required autocomplete="street-address" placeholder="12 rue des Fleurs"></label>
+              <div class="field-row"><label>Code postal<input name="postal" required inputmode="numeric" pattern="[0-9]{5}" placeholder="75010"></label><label>Ville<input name="city" required autocomplete="address-level2" placeholder="Paris"></label></div>
+            </section>
+            <section class="form-section payment-section">
+              <div class="form-section-title"><span class="line-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6 15h4"/></svg></span><div><h3>Paiement virtuel</h3><p>Aucun paiement réel ne sera effectué.</p></div><span class="demo-chip">DÉMO</span></div>
+              <label>Numéro de carte<div class="card-input"><input name="card" required inputmode="numeric" value="4242 4242 4242 4242" aria-describedby="demo-card"><span aria-hidden="true">••</span></div><small id="demo-card">Carte de démonstration préremplie</small></label>
+              <div class="field-row"><label>Expiration<input name="expiry" required value="12/30"></label><label>CVC<input name="cvc" required value="123" inputmode="numeric"></label></div>
+            </section>
+            <button class="pay-button" type="submit"><span>Confirmer l’achat virtuel</span><strong id="pay-total">0,00 €</strong></button>
+            <div class="checkout-trust"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5z"/></svg>Simulation sécurisée</span><span>Aucune carte débitée</span></div>
           </form>
-          <div class="order-review"><h3>Votre commande</h3><div id="review-items"></div><div class="review-total"><span>Total</span><strong id="review-total">0,00 €</strong></div></div>
+          <aside class="order-review"><div class="review-head"><div><p>VOTRE SÉLECTION</p><h3>Résumé</h3></div><span id="review-count">0 article</span></div><div id="review-items"></div><div class="review-delivery"><span>Livraison</span><strong id="review-shipping">Offerte</strong></div><div class="review-total"><span>Total</span><strong id="review-total">0,00 €</strong></div><p class="review-note">Retours gratuits pendant 30 jours. Votre panier reste enregistré sur cet appareil.</p></aside>
+          </div>
         </div>
       </div>
       <div class="success-view" id="success-view" hidden aria-live="polite"><div class="confetti" id="confetti" aria-hidden="true"></div><div class="success-mark"><span>✓</span></div><p class="eyebrow">COMMANDE CONFIRMÉE</p><h2>Merci, <span id="customer-name"></span>.</h2><p>Votre commande virtuelle <strong id="order-number"></strong> est confirmée. Un récapitulatif fictif a été préparé.</p><button class="primary-cta" id="continue-button">Continuer mes achats <span>→</span></button></div>

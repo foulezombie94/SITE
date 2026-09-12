@@ -80,6 +80,7 @@ function renderCart() {
   const total = subtotal + shipping;
   $("#subtotal").textContent = euro.format(subtotal);
   $("#shipping").textContent = shipping ? euro.format(shipping) : "Offerte";
+  $("#review-shipping").textContent = shipping ? euro.format(shipping) : "Offerte";
   $("#total").textContent = euro.format(total);
   $("#pay-total").textContent = euro.format(total);
   $("#review-total").textContent = euro.format(total);
@@ -104,6 +105,10 @@ function openCheckout() {
   closeCart();
   const details = cartDetails();
   $("#review-items").innerHTML = details.map((item) => `<div class="review-item"><span>${item.name} × ${item.qty}</span><strong>${euro.format(item.price * item.qty)}</strong></div>`).join("");
+  const itemCount = details.reduce((sum, item) => sum + item.qty, 0);
+  $("#review-count").textContent = `${itemCount} article${itemCount > 1 ? "s" : ""}`;
+  $("#checkout-progress").classList.remove("done");
+  $("#checkout-progress").children[1].querySelector("span").textContent = "2";
   renderCart();
   $("#checkout-form-view").hidden = false;
   $("#success-view").hidden = true;
@@ -177,8 +182,10 @@ $("#checkout-form").addEventListener("submit", (event) => {
     success.classList.remove("celebrate");
     createConfetti();
     requestAnimationFrame(() => success.classList.add("celebrate"));
+    $("#checkout-progress").classList.add("done");
+    $("#checkout-progress").children[1].querySelector("span").textContent = "✓";
     payButton.classList.remove("processing");
-    payButton.innerHTML = `Payer virtuellement <strong id="pay-total">0,00 €</strong>`;
+    payButton.innerHTML = `<span>Confirmer l’achat virtuel</span><strong id="pay-total">0,00 €</strong>`;
     cart = [];
     saveCart();
   }, 700);
