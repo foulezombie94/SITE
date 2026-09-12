@@ -1,7 +1,7 @@
 const products = [
-  { id: 2, name: "Montre Ligne Azur", detail: "Acier brossé · 38 mm", price: 149, category: "style", icon: "⌚", image: "assets/watch-azure.webp", href: "/montres/azur", accent: "#3d86ff", badge: "BEST-SELLER" },
-  { id: 7, name: "Montre Ligne Émeraude", detail: "Cuir brun · Or rose · 38 mm", price: 169, category: "style", icon: "⌚", image: "assets/watch-emerald.webp", href: "/montres/emeraude", accent: "#16875d", badge: "NOUVEAU" },
-  { id: 8, name: "Montre Ligne Minuit", detail: "Cuir noir · Acier noir · 38 mm", price: 159, category: "style", icon: "⌚", image: "assets/watch-burgundy.webp", href: "/montres/minuit", accent: "#8c243e", badge: "ÉDITION 01" },
+  { id: 2, name: "Montre Ligne Azur", detail: "Acier brossé · 38 mm", price: 149, category: "style", icon: "⌚", image: "assets/watch-azure.webp", href: "/product.html?watch=azur", accent: "#3d86ff", badge: "BEST-SELLER" },
+  { id: 7, name: "Montre Ligne Émeraude", detail: "Cuir brun · Or rose · 38 mm", price: 169, category: "style", icon: "⌚", image: "assets/watch-emerald.webp", href: "/product.html?watch=emeraude", accent: "#16875d", badge: "NOUVEAU" },
+  { id: 8, name: "Montre Ligne Minuit", detail: "Cuir noir · Acier noir · 38 mm", price: 159, category: "style", icon: "⌚", image: "assets/watch-burgundy.webp", href: "/product.html?watch=minuit", accent: "#8c243e", badge: "ÉDITION 01" },
   { id: 1, name: "Casque Studio 01", detail: "Noir mat · Autonomie 40 h", price: 189, category: "tech", icon: "🎧", accent: "#1120ff", badge: "NOUVEAU" },
   { id: 3, name: "Sac Forme", detail: "Écru · Cuir recyclé", price: 119, category: "style", icon: "👜", accent: "#ff6334" },
   { id: 4, name: "Lampe Halo", detail: "Aluminium · LED chaude", price: 79, category: "maison", icon: "💡", accent: "#ffc928", badge: "ÉDITION 01" },
