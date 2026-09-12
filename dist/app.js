@@ -72,6 +72,9 @@ function renderCart() {
   $("#cart-count").classList.remove("cart-count-pop");
   requestAnimationFrame(() => $("#cart-count").classList.add("cart-count-pop"));
   $("#drawer-count").textContent = count;
+  $("#mascot-message").textContent = count
+    ? `Votre sélection contient ${count} article${count > 1 ? "s" : ""}. On finalise ?`
+    : "Je peux vous ramener vers la sélection.";
   $("#cart-empty").hidden = details.length > 0;
   $("#cart-summary").hidden = details.length === 0;
   $("#cart-items").innerHTML = details.map((item) => `
@@ -167,6 +170,18 @@ $("#search-close").addEventListener("click", () => {
   $("#search-toggle").setAttribute("aria-expanded", "false");
 });
 $("#search-input").addEventListener("input", (event) => { query = event.target.value.trim(); renderProducts(); if (query) document.querySelector("#collection").scrollIntoView(); });
+const mascot = $("#folki-mascot");
+const mascotToggle = $("#mascot-toggle");
+const mascotBubble = $("#mascot-bubble");
+function setMascotOpen(open) {
+  mascot.classList.toggle("open", open);
+  mascotBubble.hidden = !open;
+  mascotToggle.setAttribute("aria-expanded", String(open));
+  mascotToggle.setAttribute("aria-label", open ? "Fermer l’assistant FOLKI" : "Ouvrir l’assistant FOLKI");
+}
+mascotToggle.addEventListener("click", () => setMascotOpen(!mascot.classList.contains("open")));
+$("#mascot-shop").addEventListener("click", () => { setMascotOpen(false); $("#collection").scrollIntoView({ behavior: "smooth" }); });
+document.addEventListener("click", (event) => { if (!event.target.closest("#folki-mascot")) setMascotOpen(false); });
 $("#checkout-form").addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
