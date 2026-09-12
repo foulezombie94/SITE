@@ -12,32 +12,22 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="announcement">Livraison offerte dès 100 € <span>Retours sous 30 jours</span></div>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="FOLKI, accueil">FOLKI<span>•</span></a>
-    <nav aria-label="Navigation principale">
-      <a href="#collection">Nouveautés</a>
-      <a href="#collection">La sélection</a>
-      <a href="#manifeste">Notre vision</a>
-    </nav>
-    <div class="header-actions">
-      <button class="icon-button" id="search-toggle" aria-label="Rechercher" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg></button>
-      <button class="cart-button" id="cart-toggle" aria-label="Ouvrir le panier">Panier <span id="cart-count">0</span></button>
-    </div>
-  </header>
   <div class="search-panel" id="search-panel" aria-hidden="true"><label for="search-input">Que cherchez-vous ?</label><div><input id="search-input" type="search" placeholder="Casque, sac, parfum…" autocomplete="off"><button id="search-close" aria-label="Fermer la recherche">×</button></div></div>
 
   <main id="top">
     <section class="hero">
       <div class="hero-card">
         <div class="hero-card-nav">
-          <span class="hero-card-label">FOLKI / ÉDITION 01</span>
+          <a class="hero-card-label" href="#top" aria-label="FOLKI, accueil">FOLKI<span>•</span></a>
           <nav class="hero-card-links" aria-label="Navigation du hero">
             <a class="active" href="#collection">La sélection</a>
             <a href="#manifeste">Notre vision</a>
             <a href="#collection">Nouveautés</a>
           </nav>
-          <span class="hero-card-status">OBJETS CHOISIS</span>
+          <div class="hero-card-actions">
+            <button class="icon-button" id="search-toggle" aria-label="Rechercher" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg></button>
+            <button class="cart-button" id="cart-toggle" aria-label="Ouvrir le panier">Panier <span id="cart-count">0</span></button>
+          </div>
         </div>
         <div class="hero-card-main">
           <div class="hero-copy" data-hero-sequence>
