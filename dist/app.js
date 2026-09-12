@@ -13,6 +13,39 @@ let activeFilter = "all";
 let query = "";
 const $ = (selector) => document.querySelector(selector);
 
+const heroSlides = [
+  {
+    title: "Acier bleu.",
+    accent: "Le temps en clair.",
+    description: "Acier brossé, cadran bleu nuit et une ligne nette pensée pour chaque jour.",
+    model: "Montre Ligne Azur",
+    price: "149 €",
+    oldPrice: "179 €",
+    detail: "Acier · 38 mm · livraison offerte",
+    note: "FOLKI LIGNE / AZUR"
+  },
+  {
+    title: "Émeraude.",
+    accent: "L’élégance juste.",
+    description: "Or rose, cuir brun et cadran vert profond pour une présence plus chaleureuse.",
+    model: "Montre Ligne Émeraude",
+    price: "169 €",
+    oldPrice: "199 €",
+    detail: "Cuir · 38 mm · livraison offerte",
+    note: "FOLKI LIGNE / ÉMERAUDE"
+  },
+  {
+    title: "Minuit.",
+    accent: "Le caractère net.",
+    description: "Acier noir, cuir grainé et cadran bordeaux pour une silhouette plus affirmée.",
+    model: "Montre Ligne Minuit",
+    price: "159 €",
+    oldPrice: "189 €",
+    detail: "Cuir · 38 mm · livraison offerte",
+    note: "FOLKI LIGNE / MINUIT"
+  }
+];
+
 function renderProducts() {
   const visible = products.filter((p) => (activeFilter === "all" || p.category === activeFilter) && p.name.toLowerCase().includes(query.toLowerCase()));
   $("#product-grid").innerHTML = visible.length ? visible.map((p) => `
@@ -228,6 +261,110 @@ function createConfetti() {
   }).join("");
 }
 
+function initHeroCarousel() {
+  const carousel = $("[data-hero-carousel]");
+  if (!carousel) return;
+
+  const card = carousel.querySelector(".hero-card");
+  const watches = [...carousel.querySelectorAll(".hero-watch")];
+  const themes = [...carousel.querySelectorAll(".hero-theme-layer")];
+  const copy = $("#hero-copy-details");
+  const priceBlock = carousel.querySelector(".hero-price");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let current = 0;
+  let busy = false;
+  let autoplay;
+
+  const setContent = (index) => {
+    const slide = heroSlides[index];
+    $("#hero-title").textContent = slide.title;
+    $("#hero-title-accent").textContent = slide.accent;
+    $("#hero-description").textContent = slide.description;
+    priceBlock.querySelector("span").textContent = slide.model;
+    priceBlock.querySelector("strong").textContent = slide.price;
+    priceBlock.querySelector("del").textContent = slide.oldPrice;
+    priceBlock.querySelector("small").textContent = slide.detail;
+    $("#hero-note").textContent = slide.note;
+    $("#hero-index").textContent = `${String(index + 1).padStart(2, "0")} / 03`;
+  };
+
+  const showSlide = (next, direction = "next") => {
+    if (busy || next === current) return;
+    busy = true;
+    const previous = current;
+    const sign = direction === "next" ? 1 : -1;
+    const previousWatch = watches[previous];
+    const nextWatch = watches[next];
+
+    card.dataset.heroSlide = String(next);
+    themes[previous].classList.remove("is-active");
+    themes[next].classList.add("is-active");
+    nextWatch.classList.add("is-active");
+    nextWatch.style.zIndex = "3";
+    previousWatch.style.zIndex = "2";
+
+    if (reducedMotion) {
+      previousWatch.classList.remove("is-active");
+      previousWatch.style.zIndex = "";
+      nextWatch.style.zIndex = "";
+      setContent(next);
+      current = next;
+      busy = false;
+      return;
+    }
+
+    const timing = { duration: 720, easing: "cubic-bezier(.2,.8,.2,1)", fill: "both" };
+    previousWatch.animate([
+      { opacity: 1, transform: "translate3d(0,0,0) scale(1) rotate(0deg)", filter: "blur(0) drop-shadow(0 28px 30px rgba(0,0,0,.34))" },
+      { opacity: 0, transform: `translate3d(${-sign * 24}%,6px,0) scale(.84) rotate(${-sign * 6}deg)`, filter: "blur(12px) drop-shadow(0 18px 20px rgba(0,0,0,.18))" }
+    ], timing);
+    nextWatch.animate([
+      { opacity: 0, transform: `translate3d(${sign * 24}%,18px,0) scale(.82) rotate(${sign * 6}deg)`, filter: "blur(14px) drop-shadow(0 18px 20px rgba(0,0,0,.18))" },
+      { opacity: 1, transform: "translate3d(0,0,0) scale(1) rotate(0deg)", filter: "blur(0) drop-shadow(0 28px 30px rgba(0,0,0,.34))" }
+    ], timing);
+    [copy, priceBlock].forEach((element, offset) => element.animate([
+      { opacity: 1, transform: "translateY(0)", filter: "blur(0)", offset: 0 },
+      { opacity: 0, transform: `translateY(${-sign * 10}px)`, filter: "blur(6px)", offset: .34 },
+      { opacity: 0, transform: `translateY(${sign * 10}px)`, filter: "blur(6px)", offset: .48 },
+      { opacity: 1, transform: "translateY(0)", filter: "blur(0)", offset: 1 }
+    ], { duration: 640 + offset * 60, easing: "cubic-bezier(.2,.8,.2,1)" }));
+
+    window.setTimeout(() => setContent(next), 255);
+    window.setTimeout(() => {
+      previousWatch.classList.remove("is-active");
+      previousWatch.getAnimations().forEach((animation) => animation.cancel());
+      nextWatch.getAnimations().forEach((animation) => animation.cancel());
+      previousWatch.style.zIndex = "";
+      nextWatch.style.zIndex = "";
+      current = next;
+      busy = false;
+    }, 740);
+  };
+
+  const move = (direction) => {
+    const delta = direction === "next" ? 1 : -1;
+    showSlide((current + delta + heroSlides.length) % heroSlides.length, direction);
+  };
+
+  const startAutoplay = () => {
+    window.clearInterval(autoplay);
+    if (reducedMotion) return;
+    autoplay = window.setInterval(() => move("next"), 5600);
+  };
+
+  carousel.querySelectorAll("[data-hero-direction]").forEach((button) => {
+    button.addEventListener("click", () => {
+      move(button.dataset.heroDirection);
+      startAutoplay();
+    });
+  });
+  carousel.addEventListener("pointerenter", () => window.clearInterval(autoplay));
+  carousel.addEventListener("pointerleave", startAutoplay);
+  carousel.addEventListener("focusin", () => window.clearInterval(autoplay));
+  carousel.addEventListener("focusout", (event) => { if (!carousel.contains(event.relatedTarget)) startAutoplay(); });
+  startAutoplay();
+}
+
 function initMotion() {
   requestAnimationFrame(() => document.body.classList.add("loaded"));
   const observer = new IntersectionObserver((entries) => {
@@ -241,17 +378,22 @@ function initMotion() {
 
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && window.matchMedia("(pointer: fine)").matches) {
     const hero = $(".hero");
-    const image = hero.querySelector("img");
+    const visual = hero.querySelector(".hero-visual");
     hero.addEventListener("pointermove", (event) => {
       const rect = hero.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width - .5;
       const y = (event.clientY - rect.top) / rect.height - .5;
-      image.style.transform = `scale(1.035) translate(${(-x * 10).toFixed(1)}px, ${(-y * 8).toFixed(1)}px)`;
+      visual.style.setProperty("--hero-shift-x", `${(-x * 10).toFixed(1)}px`);
+      visual.style.setProperty("--hero-shift-y", `${(-y * 8).toFixed(1)}px`);
     });
-    hero.addEventListener("pointerleave", () => { image.style.transform = "scale(1.025)"; });
+    hero.addEventListener("pointerleave", () => {
+      visual.style.setProperty("--hero-shift-x", "0px");
+      visual.style.setProperty("--hero-shift-y", "0px");
+    });
   }
 }
 
+initHeroCarousel();
 initMotion();
 
 function registerAgentTools() {

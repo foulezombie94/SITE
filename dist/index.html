@@ -15,8 +15,13 @@
   <div class="search-panel" id="search-panel" aria-hidden="true"><label for="search-input">Que cherchez-vous ?</label><div><input id="search-input" type="search" placeholder="Casque, sac, parfum…" autocomplete="off"><button id="search-close" aria-label="Fermer la recherche">×</button></div></div>
 
   <main id="top">
-    <section class="hero">
-      <div class="hero-card">
+    <section class="hero" data-hero-carousel>
+      <div class="hero-card" data-hero-slide="0">
+        <div class="hero-theme-layers" aria-hidden="true">
+          <span class="hero-theme-layer theme-azure is-active" data-theme-index="0"></span>
+          <span class="hero-theme-layer theme-emerald" data-theme-index="1"></span>
+          <span class="hero-theme-layer theme-burgundy" data-theme-index="2"></span>
+        </div>
         <div class="hero-card-nav">
           <a class="hero-card-label" href="#top" aria-label="FOLKI, accueil">FOLKI<span>•</span></a>
           <nav class="hero-card-links" aria-label="Navigation du hero">
@@ -35,27 +40,30 @@
               <button type="button" data-hero-direction="prev" aria-label="Produit précédent">←</button>
               <button type="button" data-hero-direction="next" aria-label="Produit suivant">→</button>
             </div>
-            <h1>Moins d’objets.<br><em>Plus d’allure.</em></h1>
-            <p>Une sélection pointue d’accessoires utiles, tactiles et faits pour durer.</p>
-            <a class="primary-cta" href="#collection">Découvrir la sélection <span>↘</span></a>
+            <div class="hero-copy-details" id="hero-copy-details" aria-live="polite">
+              <h1><span id="hero-title">Acier bleu.</span><br><em id="hero-title-accent">Le temps en clair.</em></h1>
+              <p id="hero-description">Acier brossé, cadran bleu nuit et une ligne nette pensée pour chaque jour.</p>
+            </div>
+            <a class="primary-cta" href="#collection">Découvrir la montre <span>↘</span></a>
           </div>
           <div class="hero-visual" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1565259118992-d0dce38f9f26?auto=format&fit=crop&w=1400&q=88" alt="" fetchpriority="high">
-            <div class="hero-visual-shade"></div>
-            <span class="hero-visual-tag">FOLKI / 01</span>
-            <p class="hero-visual-caption">Des objets<br><em>qui restent.</em></p>
+            <span class="hero-watch-orbit"></span>
+            <span class="hero-watch-shadow"></span>
+            <img class="hero-watch is-active" data-watch-index="0" src="assets/watch-azure.webp" alt="" fetchpriority="high">
+            <img class="hero-watch" data-watch-index="1" src="assets/watch-emerald.webp" alt="" loading="eager">
+            <img class="hero-watch" data-watch-index="2" src="assets/watch-burgundy.webp" alt="" loading="eager">
           </div>
-          <aside class="hero-price" aria-label="Prix de départ de la sélection">
-            <span>À partir de</span>
-            <strong>64 €</strong>
-            <del>79 €</del>
-            <small>Livraison offerte dès 100 €</small>
+          <aside class="hero-price" aria-label="Détails de la montre affichée" aria-live="polite">
+            <span id="hero-model">Ligne Azur</span>
+            <strong id="hero-price">149 €</strong>
+            <del id="hero-old-price">179 €</del>
+            <small id="hero-price-note">Acier 38 mm · Livraison offerte</small>
           </aside>
         </div>
         <div class="hero-card-bottom">
           <span>OBJETS DU QUOTIDIEN, MIEUX CHOISIS.</span>
-          <span class="hero-card-note">Une pièce pensée pour durer.</span>
-          <span class="hero-index">01 / 04</span>
+          <span class="hero-card-note" id="hero-note">FOLKI LIGNE / AZUR</span>
+          <span class="hero-index" id="hero-index">01 / 03</span>
         </div>
       </div>
     </section>
