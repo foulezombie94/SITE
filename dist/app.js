@@ -270,6 +270,8 @@ function initHeroCarousel() {
   const themes = [...carousel.querySelectorAll(".hero-theme-layer")];
   const copy = $("#hero-copy-details");
   const priceBlock = carousel.querySelector(".hero-price");
+  const nextPreview = $("#hero-next-watch");
+  const nextPreviewButton = nextPreview.closest(".hero-next-preview");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let current = 0;
   let busy = false;
@@ -287,6 +289,7 @@ function initHeroCarousel() {
     priceBlock.querySelector("small").textContent = slide.detail;
     $("#hero-note").textContent = slide.note;
     $("#hero-index").textContent = `${String(index + 1).padStart(2, "0")} / 03`;
+    nextPreview.src = watches[(index + 1) % watches.length].getAttribute("src");
   };
 
   const showSlide = (next, direction = "next") => {
@@ -318,21 +321,27 @@ function initHeroCarousel() {
       return;
     }
 
-    const timing = { duration: 680, easing: "cubic-bezier(.16,1,.3,1)", fill: "both" };
+    const timing = { duration: 760, easing: "cubic-bezier(.16,1,.3,1)", fill: "both" };
     const outgoing = previousWatch.animate([
       { opacity: 1, transform: "translate3d(0,0,0) scale(1) rotate(0deg)" },
-      { opacity: 0, transform: `translate3d(${-sign * 12}%,4px,0) scale(.94) rotate(${-sign * 2.5}deg)` }
+      { opacity: 0, transform: `translate3d(0,${-sign * 58}%,0) scale(.92)` }
     ], timing);
     const incoming = nextWatch.animate([
-      { opacity: 0, transform: `translate3d(${sign * 12}%,10px,0) scale(.94) rotate(${sign * 2.5}deg)` },
+      { opacity: 0, transform: `translate3d(0,${sign * 64}%,0) scale(.92)` },
       { opacity: 1, transform: "translate3d(0,0,0) scale(1) rotate(0deg)" }
     ], timing);
     const copyAnimations = [copy, priceBlock].map((element, offset) => element.animate([
       { opacity: 1, transform: "translateY(0)", offset: 0 },
-      { opacity: 0, transform: `translateY(${-sign * 6}px)`, offset: .38 },
-      { opacity: 0, transform: `translateY(${sign * 6}px)`, offset: .48 },
+      { opacity: 0, transform: `translateY(${-sign * 18}px)`, offset: .34 },
+      { opacity: 0, transform: `translateY(${sign * 24}px)`, offset: .46 },
       { opacity: 1, transform: "translateY(0)", offset: 1 }
-    ], { duration: 560 + offset * 40, easing: "cubic-bezier(.16,1,.3,1)" }));
+    ], { duration: 620 + offset * 40, easing: "cubic-bezier(.16,1,.3,1)" }));
+    const previewAnimation = nextPreviewButton.animate([
+      { opacity: 1, transform: "translateY(0) scale(1)", offset: 0 },
+      { opacity: 0, transform: "translateY(-14px) scale(.9)", offset: .34 },
+      { opacity: 0, transform: "translateY(18px) scale(.9)", offset: .46 },
+      { opacity: 1, transform: "translateY(0) scale(1)", offset: 1 }
+    ], { duration: 650, easing: "cubic-bezier(.16,1,.3,1)" });
 
     window.setTimeout(() => setContent(next), 220);
     Promise.allSettled([outgoing.finished, incoming.finished]).then(() => {
@@ -340,6 +349,7 @@ function initHeroCarousel() {
       outgoing.cancel();
       incoming.cancel();
       copyAnimations.forEach((animation) => animation.cancel());
+      previewAnimation.cancel();
       previousWatch.style.zIndex = "";
       nextWatch.style.zIndex = "";
       current = next;

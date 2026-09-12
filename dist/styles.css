@@ -227,7 +227,8 @@ body.loaded .hero-visual{animation:hero-visual-in .7s .18s cubic-bezier(.16,1,.3
 .hero-switcher button:hover{background:var(--hero-highlight);border-color:var(--hero-highlight)}
 .hero-copy-details{min-height:clamp(225px,27vh,300px)}
 .hero-copy-details>p{max-width:380px;margin:0;color:#d5d9e2;font-size:1rem;line-height:1.58}
-.hero-visual{isolation:isolate;display:grid;place-items:center;min-height:560px;translate:var(--hero-shift-x,0) var(--hero-shift-y,0);transition:translate .28s ease-out}
+.hero-copy-details{margin-bottom:clamp(34px,4vh,56px)}
+.hero-visual{isolation:isolate;display:grid;place-items:center;min-height:560px;overflow:clip;translate:var(--hero-shift-x,0) var(--hero-shift-y,0);transition:translate .28s ease-out}
 .hero-visual::after{display:none}
 .hero-watch-orbit{position:absolute;z-index:0;width:min(92%,560px);aspect-ratio:1;border:1px solid rgba(255,255,255,.14);border-radius:50%;box-shadow:0 0 0 42px rgba(255,255,255,.025),0 0 0 84px rgba(255,255,255,.018);animation:watch-orbit 18s linear infinite}
 .hero-watch-orbit::before,.hero-watch-orbit::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--hero-highlight);box-shadow:0 0 18px var(--hero-highlight)}
@@ -240,7 +241,12 @@ body.loaded .hero-visual{animation:hero-visual-in .7s .18s cubic-bezier(.16,1,.3
 .hero-price strong{transition:color .55s ease}
 .hero-price small{max-width:145px;color:#c0c5d0}
 .hero-card-note{color:#eef0f4}
+.hero-card-bottom{position:relative}
+.hero-next-preview{position:absolute;right:0;bottom:34px;width:92px;height:92px;padding:0;border:0;background:transparent;color:#c9ceda;display:grid;place-items:center;cursor:pointer;transform-origin:bottom center}
+.hero-next-preview img{display:block;width:92px;height:88px;object-fit:contain;filter:drop-shadow(0 13px 13px rgba(0,0,0,.35));transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.hero-next-preview:hover img{transform:translateY(-6px) scale(1.06)}
+.hero-next-preview:focus-visible{outline:2px solid var(--hero-highlight);outline-offset:5px}
 @keyframes watch-orbit{to{transform:rotate(360deg)}}
 @media(max-width:980px){.hero-copy-details{min-height:205px}.hero-visual{min-height:390px}.hero-visual .hero-watch{max-height:420px}.hero-watch-orbit{width:min(72vw,430px)}}
-@media(max-width:780px){.hero-copy-details{min-height:0}.hero-visual{min-height:310px}.hero-visual .hero-watch{width:min(92vw,390px);max-height:330px}.hero-watch-orbit{width:min(74vw,300px)}.hero-price{min-height:0}}
+@media(max-width:780px){.hero-copy-details{min-height:0;margin-bottom:30px}.hero-visual{min-height:310px}.hero-visual .hero-watch{width:min(92vw,390px);max-height:330px}.hero-watch-orbit{width:min(74vw,300px)}.hero-price{min-height:0}.hero-next-preview{right:0;bottom:28px;width:62px;height:62px}.hero-next-preview img{width:62px;height:62px}}
 @media(prefers-reduced-motion:reduce){.hero-theme-layer{transition:none}.hero-watch-orbit{animation:none}.hero-visual{transition:none}}
