@@ -44,23 +44,17 @@
 </head>
 <body>
   <div class="page">
-    <header class="topbar"><a class="brand" href="/">FOLKI<span>•</span></a><span class="code">Erreur 404 / Objet introuvable</span></header>
+    <header class="topbar"><a class="brand" href="/">FOLKI<span>•</span></a><span class="code">Erreur 404 / Page introuvable</span></header>
     <main>
       <section class="copy" aria-labelledby="error-title">
-        <p class="eyebrow">Oups, petite sortie de route</p>
-        <h1 id="error-title">Cette page s’est <em>échappée.</em></h1>
-        <p class="lead">Le lien n’est plus à la bonne adresse, mais votre prochaine pièce préférée est toujours dans la sélection.</p>
-        <div class="actions"><a class="primary" href="/">Revenir à la sélection <span>↗</span></a><button class="back" id="back-button" type="button">Page précédente</button></div>
-        <p class="meta">FOLKI vous ramène vers l’essentiel.</p>
+        <p class="eyebrow">Erreur 404</p>
+        <h1 id="error-title">Page <em>introuvable.</em></h1>
+        <p class="lead">Cette page n’existe pas ou a été déplacée.</p>
+        <div class="actions"><a class="primary" href="/">Revenir à l’accueil <span>↗</span></a></div>
       </section>
-      <div class="mascot-stage" aria-hidden="true"><img class="mascot" src="/assets/folki-mascot.svg" alt=""><span class="bubble">Je connais un meilleur chemin&nbsp;→</span></div>
+      <div class="mascot-stage" aria-hidden="true"><img class="mascot" src="/assets/folki-mascot.svg" alt=""></div>
     </main>
     <footer><span>Objets du quotidien, mieux choisis.</span><span>© 2026 FOLKI</span></footer>
   </div>
-  <script>
-    document.querySelector("#back-button").addEventListener("click", () => {
-      if (window.history.length > 1) window.history.back(); else window.location.href = "/";
-    });
-  </script>
 </body>
 </html>
