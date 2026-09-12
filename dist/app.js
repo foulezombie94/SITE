@@ -273,6 +273,7 @@ function initHeroCarousel() {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let current = 0;
   let busy = false;
+  let queuedDirection = null;
   let autoplay;
 
   const setContent = (index) => {
@@ -289,7 +290,11 @@ function initHeroCarousel() {
   };
 
   const showSlide = (next, direction = "next") => {
-    if (busy || next === current) return;
+    if (busy) {
+      queuedDirection = direction;
+      return;
+    }
+    if (next === current) return;
     busy = true;
     const previous = current;
     const sign = direction === "next" ? 1 : -1;
@@ -313,32 +318,38 @@ function initHeroCarousel() {
       return;
     }
 
-    const timing = { duration: 720, easing: "cubic-bezier(.2,.8,.2,1)", fill: "both" };
-    previousWatch.animate([
-      { opacity: 1, transform: "translate3d(0,0,0) scale(1) rotate(0deg)", filter: "blur(0) drop-shadow(0 28px 30px rgba(0,0,0,.34))" },
-      { opacity: 0, transform: `translate3d(${-sign * 24}%,6px,0) scale(.84) rotate(${-sign * 6}deg)`, filter: "blur(12px) drop-shadow(0 18px 20px rgba(0,0,0,.18))" }
+    const timing = { duration: 680, easing: "cubic-bezier(.16,1,.3,1)", fill: "both" };
+    const outgoing = previousWatch.animate([
+      { opacity: 1, transform: "translate3d(0,0,0) scale(1) rotate(0deg)" },
+      { opacity: 0, transform: `translate3d(${-sign * 12}%,4px,0) scale(.94) rotate(${-sign * 2.5}deg)` }
     ], timing);
-    nextWatch.animate([
-      { opacity: 0, transform: `translate3d(${sign * 24}%,18px,0) scale(.82) rotate(${sign * 6}deg)`, filter: "blur(14px) drop-shadow(0 18px 20px rgba(0,0,0,.18))" },
-      { opacity: 1, transform: "translate3d(0,0,0) scale(1) rotate(0deg)", filter: "blur(0) drop-shadow(0 28px 30px rgba(0,0,0,.34))" }
+    const incoming = nextWatch.animate([
+      { opacity: 0, transform: `translate3d(${sign * 12}%,10px,0) scale(.94) rotate(${sign * 2.5}deg)` },
+      { opacity: 1, transform: "translate3d(0,0,0) scale(1) rotate(0deg)" }
     ], timing);
-    [copy, priceBlock].forEach((element, offset) => element.animate([
-      { opacity: 1, transform: "translateY(0)", filter: "blur(0)", offset: 0 },
-      { opacity: 0, transform: `translateY(${-sign * 10}px)`, filter: "blur(6px)", offset: .34 },
-      { opacity: 0, transform: `translateY(${sign * 10}px)`, filter: "blur(6px)", offset: .48 },
-      { opacity: 1, transform: "translateY(0)", filter: "blur(0)", offset: 1 }
-    ], { duration: 640 + offset * 60, easing: "cubic-bezier(.2,.8,.2,1)" }));
+    const copyAnimations = [copy, priceBlock].map((element, offset) => element.animate([
+      { opacity: 1, transform: "translateY(0)", offset: 0 },
+      { opacity: 0, transform: `translateY(${-sign * 6}px)`, offset: .38 },
+      { opacity: 0, transform: `translateY(${sign * 6}px)`, offset: .48 },
+      { opacity: 1, transform: "translateY(0)", offset: 1 }
+    ], { duration: 560 + offset * 40, easing: "cubic-bezier(.16,1,.3,1)" }));
 
-    window.setTimeout(() => setContent(next), 255);
-    window.setTimeout(() => {
+    window.setTimeout(() => setContent(next), 220);
+    Promise.allSettled([outgoing.finished, incoming.finished]).then(() => {
       previousWatch.classList.remove("is-active");
-      previousWatch.getAnimations().forEach((animation) => animation.cancel());
-      nextWatch.getAnimations().forEach((animation) => animation.cancel());
+      outgoing.cancel();
+      incoming.cancel();
+      copyAnimations.forEach((animation) => animation.cancel());
       previousWatch.style.zIndex = "";
       nextWatch.style.zIndex = "";
       current = next;
       busy = false;
-    }, 740);
+      if (queuedDirection) {
+        const pendingDirection = queuedDirection;
+        queuedDirection = null;
+        move(pendingDirection);
+      }
+    });
   };
 
   const move = (direction) => {
