@@ -1,15 +1,93 @@
 const products = [
-  { id: 2, name: "Montre Ligne Azur", detail: "Acier brossé · 38 mm", price: 149, category: "style", icon: "⌚", image: "assets/watch-azure.webp", href: "/product.html?watch=azur", accent: "#3d86ff", badge: "BEST-SELLER" },
-  { id: 7, name: "Montre Ligne Émeraude", detail: "Cuir brun · Or rose · 38 mm", price: 169, category: "style", icon: "⌚", image: "assets/watch-emerald.webp", href: "/product.html?watch=emeraude", accent: "#16875d", badge: "NOUVEAU" },
-  { id: 8, name: "Montre Ligne Minuit", detail: "Cuir noir · Acier noir · 38 mm", price: 159, category: "style", icon: "⌚", image: "assets/watch-burgundy.webp", href: "/product.html?watch=minuit", accent: "#8c243e", badge: "ÉDITION 01" },
-  { id: 1, name: "Casque Studio 01", detail: "Noir mat · Autonomie 40 h", price: 189, category: "tech", icon: "🎧", accent: "#1120ff", badge: "NOUVEAU" },
-  { id: 3, name: "Sac Forme", detail: "Écru · Cuir recyclé", price: 119, category: "style", icon: "👜", accent: "#ff6334" },
-  { id: 4, name: "Lampe Halo", detail: "Aluminium · LED chaude", price: 79, category: "maison", icon: "💡", accent: "#ffc928", badge: "ÉDITION 01" },
-  { id: 5, name: "Enceinte Bloc", detail: "Bleu · Bluetooth 5.3", price: 99, category: "tech", icon: "🔊", accent: "#7b59ff" },
-  { id: 6, name: "Vase Onde", detail: "Verre soufflé · 24 cm", price: 64, category: "maison", icon: "🏺", accent: "#39d5c3" }
+  {
+    id: 2,
+    name: "Montre Ligne Azur",
+    detail: "Acier brossé · 38 mm",
+    price: 149,
+    category: "style",
+    icon: "⌚",
+    image: "assets/watch-azure.webp",
+    href: "/product.html?watch=azur",
+    accent: "#3d86ff",
+    badge: "BEST-SELLER",
+  },
+  {
+    id: 7,
+    name: "Montre Ligne Émeraude",
+    detail: "Cuir brun · Or rose · 38 mm",
+    price: 169,
+    category: "style",
+    icon: "⌚",
+    image: "assets/watch-emerald.webp",
+    href: "/product.html?watch=emeraude",
+    accent: "#16875d",
+    badge: "NOUVEAU",
+  },
+  {
+    id: 8,
+    name: "Montre Ligne Minuit",
+    detail: "Cuir noir · Acier noir · 38 mm",
+    price: 159,
+    category: "style",
+    icon: "⌚",
+    image: "assets/watch-burgundy.webp",
+    href: "/product.html?watch=minuit",
+    accent: "#8c243e",
+    badge: "ÉDITION 01",
+  },
+  {
+    id: 1,
+    name: "Casque Studio 01",
+    detail: "Noir mat · Autonomie 40 h",
+    price: 189,
+    category: "tech",
+    icon: "🎧",
+    accent: "#1120ff",
+    badge: "NOUVEAU",
+  },
+  {
+    id: 3,
+    name: "Sac Forme",
+    detail: "Écru · Cuir recyclé",
+    price: 119,
+    category: "style",
+    icon: "👜",
+    accent: "#ff6334",
+  },
+  {
+    id: 4,
+    name: "Lampe Halo",
+    detail: "Aluminium · LED chaude",
+    price: 79,
+    category: "maison",
+    icon: "💡",
+    accent: "#ffc928",
+    badge: "ÉDITION 01",
+  },
+  {
+    id: 5,
+    name: "Enceinte Bloc",
+    detail: "Bleu · Bluetooth 5.3",
+    price: 99,
+    category: "tech",
+    icon: "🔊",
+    accent: "#7b59ff",
+  },
+  {
+    id: 6,
+    name: "Vase Onde",
+    detail: "Verre soufflé · 24 cm",
+    price: 64,
+    category: "maison",
+    icon: "🏺",
+    accent: "#39d5c3",
+  },
 ];
 
-const euro = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
+const euro = new Intl.NumberFormat("fr-FR", {
+  style: "currency",
+  currency: "EUR",
+});
 let cart = JSON.parse(localStorage.getItem("folki-cart") || "[]");
 let activeFilter = "all";
 let query = "";
@@ -19,52 +97,66 @@ const heroSlides = [
   {
     title: "Acier bleu.",
     accent: "Le temps en clair.",
-    description: "Acier brossé, cadran bleu nuit et une ligne nette pensée pour chaque jour.",
+    description:
+      "Acier brossé, cadran bleu nuit et une ligne nette pensée pour chaque jour.",
     model: "Montre Ligne Azur",
     price: "149 €",
     oldPrice: "179 €",
     detail: "Acier · 38 mm · livraison offerte",
-    note: "FOLKI LIGNE / AZUR"
+    note: "FOLKI LIGNE / AZUR",
   },
   {
     title: "Émeraude.",
     accent: "L’élégance juste.",
-    description: "Or rose, cuir brun et cadran vert profond pour une présence plus chaleureuse.",
+    description:
+      "Or rose, cuir brun et cadran vert profond pour une présence plus chaleureuse.",
     model: "Montre Ligne Émeraude",
     price: "169 €",
     oldPrice: "199 €",
     detail: "Cuir · 38 mm · livraison offerte",
-    note: "FOLKI LIGNE / ÉMERAUDE"
+    note: "FOLKI LIGNE / ÉMERAUDE",
   },
   {
     title: "Minuit.",
     accent: "Le caractère net.",
-    description: "Acier noir, cuir grainé et cadran bordeaux pour une silhouette plus affirmée.",
+    description:
+      "Acier noir, cuir grainé et cadran bordeaux pour une silhouette plus affirmée.",
     model: "Montre Ligne Minuit",
     price: "159 €",
     oldPrice: "189 €",
     detail: "Cuir · 38 mm · livraison offerte",
-    note: "FOLKI LIGNE / MINUIT"
-  }
+    note: "FOLKI LIGNE / MINUIT",
+  },
 ];
 
 function renderProducts() {
-  const visible = products.filter((p) => (activeFilter === "all" || p.category === activeFilter) && p.name.toLowerCase().includes(query.toLowerCase()));
-  $("#product-grid").innerHTML = visible.length ? visible.map((p, index) => {
-    const artwork = `${p.badge ? `<span class="badge">${p.badge}</span>` : ""}${p.image ? `<img class="product-image" src="${p.image}" alt="${p.name}" loading="lazy">` : `<span class="product-icon" aria-hidden="true">${p.icon}</span>`}`;
-    const info = `<h3>${p.name}</h3><p>${p.detail}</p><span class="price">${euro.format(p.price)}</span>`;
-    return `<article class="product-card${p.href ? " watch-card" : ""}" data-category="${p.category}" style="--i:${index}">
+  const visible = products.filter(
+    (p) =>
+      (activeFilter === "all" || p.category === activeFilter) &&
+      p.name.toLowerCase().includes(query.toLowerCase()),
+  );
+  $("#product-grid").innerHTML = visible.length
+    ? visible
+        .map((p, index) => {
+          const artwork = `${p.badge ? `<span class="badge">${p.badge}</span>` : ""}${p.image ? `<img class="product-image" src="${p.image}" alt="${p.name}" loading="lazy">` : `<span class="product-icon" aria-hidden="true">${p.icon}</span>`}`;
+          const info = `<h3>${p.name}</h3><p>${p.detail}</p><span class="price">${euro.format(p.price)}</span>`;
+          return `<article class="product-card${p.href ? " watch-card" : ""}" data-category="${p.category}" style="--i:${index}">
       <div class="product-visual" style="--accent:${p.accent}">
         ${p.href ? `<a class="product-visual-link" href="${p.href}" aria-label="Voir ${p.name}">${artwork}</a>` : artwork}
         <button class="quick-add" data-add="${p.id}" aria-label="Ajouter ${p.name} au panier">+</button>
       </div>
       ${p.href ? `<a class="product-info product-info-link" href="${p.href}">${info}</a>` : `<div class="product-info">${info}</div>`}
     </article>`;
-  }).join("") : `<div class="no-results"><img class="state-mascot state-mascot-error" src="assets/folki-mascot.svg" alt="" aria-hidden="true"><p>Aucun objet ne correspond à votre recherche.</p><button type="button" data-reset-search>Réinitialiser la recherche <span>↗</span></button></div>`;
+        })
+        .join("")
+    : `<div class="no-results"><img class="state-mascot state-mascot-error" src="assets/folki-mascot.svg" alt="" aria-hidden="true"><p>Aucun objet ne correspond à votre recherche.</p><button type="button" data-reset-search>Réinitialiser la recherche <span>↗</span></button></div>`;
 }
 
 function cartDetails() {
-  return cart.map((entry) => ({ ...products.find((p) => p.id === entry.id), qty: entry.qty }));
+  return cart.map((entry) => ({
+    ...products.find((p) => p.id === entry.id),
+    qty: entry.qty,
+  }));
 }
 
 function cartTotal() {
@@ -78,7 +170,8 @@ function saveCart() {
 
 function addToCart(id) {
   const line = cart.find((item) => item.id === id);
-  if (line) line.qty += 1; else cart.push({ id, qty: 1 });
+  if (line) line.qty += 1;
+  else cart.push({ id, qty: 1 });
   saveCart();
   animateAddButton(id);
   showToast(`${products.find((p) => p.id === id).name} ajouté au panier`);
@@ -90,7 +183,10 @@ function animateAddButton(id) {
   const original = button.textContent;
   button.textContent = "✓";
   button.classList.add("added");
-  window.setTimeout(() => { button.textContent = original; button.classList.remove("added"); }, 850);
+  window.setTimeout(() => {
+    button.textContent = original;
+    button.classList.remove("added");
+  }, 850);
 }
 
 function changeQuantity(id, delta) {
@@ -114,13 +210,19 @@ function renderCart() {
     : "Je peux vous ramener vers la sélection.";
   $("#cart-empty").hidden = details.length > 0;
   $("#cart-summary").hidden = details.length === 0;
-  $("#cart-items").innerHTML = details.map((item) => `
-    <div class="cart-item"><div class="cart-item-icon">${item.image ? `<img src="${item.image}" alt="${item.name}">` : item.icon}</div><div><h3>${item.name}</h3><p>${euro.format(item.price)}</p><div class="quantity"><button data-qty="-1" data-id="${item.id}" aria-label="Retirer une unité">−</button><span>${item.qty}</span><button data-qty="1" data-id="${item.id}" aria-label="Ajouter une unité">+</button></div></div><button class="remove" data-remove="${item.id}">Retirer</button></div>`).join("");
+  $("#cart-items").innerHTML = details
+    .map(
+      (item) => `
+    <div class="cart-item"><div class="cart-item-icon">${item.image ? `<img src="${item.image}" alt="${item.name}">` : item.icon}</div><div><h3>${item.name}</h3><p>${euro.format(item.price)}</p><div class="quantity"><button data-qty="-1" data-id="${item.id}" aria-label="Retirer une unité">−</button><span>${item.qty}</span><button data-qty="1" data-id="${item.id}" aria-label="Ajouter une unité">+</button></div></div><button class="remove" data-remove="${item.id}">Retirer</button></div>`,
+    )
+    .join("");
   const shipping = subtotal >= 100 || subtotal === 0 ? 0 : 6.9;
   const total = subtotal + shipping;
   $("#subtotal").textContent = euro.format(subtotal);
   $("#shipping").textContent = shipping ? euro.format(shipping) : "Offerte";
-  $("#review-shipping").textContent = shipping ? euro.format(shipping) : "Offerte";
+  $("#review-shipping").textContent = shipping
+    ? euro.format(shipping)
+    : "Offerte";
   $("#total").textContent = euro.format(total);
   $("#pay-total").textContent = euro.format(total);
   $("#review-total").textContent = euro.format(total);
@@ -144,9 +246,15 @@ function closeCart() {
 function openCheckout() {
   closeCart();
   const details = cartDetails();
-  $("#review-items").innerHTML = details.map((item) => `<div class="review-item"><span>${item.name} × ${item.qty}</span><strong>${euro.format(item.price * item.qty)}</strong></div>`).join("");
+  $("#review-items").innerHTML = details
+    .map(
+      (item) =>
+        `<div class="review-item"><span>${item.name} × ${item.qty}</span><strong>${euro.format(item.price * item.qty)}</strong></div>`,
+    )
+    .join("");
   const itemCount = details.reduce((sum, item) => sum + item.qty, 0);
-  $("#review-count").textContent = `${itemCount} article${itemCount > 1 ? "s" : ""}`;
+  $("#review-count").textContent =
+    `${itemCount} article${itemCount > 1 ? "s" : ""}`;
   $("#checkout-progress").classList.remove("done");
   $("#checkout-progress").children[1].querySelector("span").textContent = "2";
   renderCart();
@@ -175,17 +283,24 @@ function showToast(message) {
 document.addEventListener("click", (event) => {
   const add = event.target.closest("[data-add]");
   const qty = event.target.closest("[data-qty]");
- const remove = event.target.closest("[data-remove]");
- const filter = event.target.closest("[data-filter]");
+  const remove = event.target.closest("[data-remove]");
+  const filter = event.target.closest("[data-filter]");
   const resetSearch = event.target.closest("[data-reset-search]");
   if (add) addToCart(Number(add.dataset.add));
   if (qty) changeQuantity(Number(qty.dataset.id), Number(qty.dataset.qty));
-  if (remove) { cart = cart.filter((item) => item.id !== Number(remove.dataset.remove)); saveCart(); }
+  if (remove) {
+    cart = cart.filter((item) => item.id !== Number(remove.dataset.remove));
+    saveCart();
+  }
   if (filter) {
     activeFilter = filter.dataset.filter;
-    document.querySelectorAll(".filter").forEach((button) => button.classList.toggle("active", button === filter));
-   renderProducts();
- }
+    document
+      .querySelectorAll(".filter")
+      .forEach((button) =>
+        button.classList.toggle("active", button === filter),
+      );
+    renderProducts();
+  }
   if (resetSearch) {
     query = "";
     $("#search-input").value = "";
@@ -199,8 +314,13 @@ $("#cart-close").addEventListener("click", closeCart);
 $("#overlay").addEventListener("click", closeCart);
 $("#checkout-button").addEventListener("click", openCheckout);
 $("#checkout-close").addEventListener("click", closeCheckout);
-$("#checkout-modal").addEventListener("click", (event) => { if (event.target === $("#checkout-modal")) closeCheckout(); });
-$("#continue-button").addEventListener("click", () => { closeCheckout(); document.querySelector("#collection").scrollIntoView(); });
+$("#checkout-modal").addEventListener("click", (event) => {
+  if (event.target === $("#checkout-modal")) closeCheckout();
+});
+$("#continue-button").addEventListener("click", () => {
+  closeCheckout();
+  document.querySelector("#collection").scrollIntoView();
+});
 $("#search-toggle").addEventListener("click", () => {
   const open = $("#search-panel").classList.toggle("open");
   $("#search-panel").setAttribute("aria-hidden", String(!open));
@@ -212,7 +332,11 @@ $("#search-close").addEventListener("click", () => {
   $("#search-panel").setAttribute("aria-hidden", "true");
   $("#search-toggle").setAttribute("aria-expanded", "false");
 });
-$("#search-input").addEventListener("input", (event) => { query = event.target.value.trim(); renderProducts(); if (query) document.querySelector("#collection").scrollIntoView(); });
+$("#search-input").addEventListener("input", (event) => {
+  query = event.target.value.trim();
+  renderProducts();
+  if (query) document.querySelector("#collection").scrollIntoView();
+});
 const mascot = $("#folki-mascot");
 const mascotToggle = $("#mascot-toggle");
 const mascotBubble = $("#mascot-bubble");
@@ -220,11 +344,21 @@ function setMascotOpen(open) {
   mascot.classList.toggle("open", open);
   mascotBubble.hidden = !open;
   mascotToggle.setAttribute("aria-expanded", String(open));
-  mascotToggle.setAttribute("aria-label", open ? "Fermer l’assistant FOLKI" : "Ouvrir l’assistant FOLKI");
+  mascotToggle.setAttribute(
+    "aria-label",
+    open ? "Fermer l’assistant FOLKI" : "Ouvrir l’assistant FOLKI",
+  );
 }
-mascotToggle.addEventListener("click", () => setMascotOpen(!mascot.classList.contains("open")));
-$("#mascot-shop").addEventListener("click", () => { setMascotOpen(false); $("#collection").scrollIntoView({ behavior: "smooth" }); });
-document.addEventListener("click", (event) => { if (!event.target.closest("#folki-mascot")) setMascotOpen(false); });
+mascotToggle.addEventListener("click", () =>
+  setMascotOpen(!mascot.classList.contains("open")),
+);
+$("#mascot-shop").addEventListener("click", () => {
+  setMascotOpen(false);
+  $("#collection").scrollIntoView({ behavior: "smooth" });
+});
+document.addEventListener("click", (event) => {
+  if (!event.target.closest("#folki-mascot")) setMascotOpen(false);
+});
 $("#checkout-form").addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
@@ -248,7 +382,13 @@ $("#checkout-form").addEventListener("submit", (event) => {
     saveCart();
   }, 700);
 });
-document.addEventListener("keydown", (event) => { if (event.key === "Escape") { closeCart(); closeCheckout(); $("#search-panel").classList.remove("open"); } });
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeCart();
+    closeCheckout();
+    $("#search-panel").classList.remove("open");
+  }
+});
 
 renderProducts();
 renderCart();
@@ -280,7 +420,9 @@ function initHeroCarousel() {
   const priceBlock = carousel.querySelector(".hero-price");
   const nextPreview = $("#hero-next-watch");
   const nextPreviewButton = nextPreview.closest(".hero-next-preview");
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
   let current = 0;
   let busy = false;
   let queuedDirection = null;
@@ -329,27 +471,49 @@ function initHeroCarousel() {
       return;
     }
 
-    const timing = { duration: 760, easing: "cubic-bezier(.16,1,.3,1)", fill: "both" };
-    const outgoing = previousWatch.animate([
-      { opacity: 1, transform: "translate3d(0,0,0) scale(1) rotate(0deg)" },
-      { opacity: 0, transform: `translate3d(0,${-sign * 58}%,0) scale(.92)` }
-    ], timing);
-    const incoming = nextWatch.animate([
-      { opacity: 0, transform: `translate3d(0,${sign * 64}%,0) scale(.92)` },
-      { opacity: 1, transform: "translate3d(0,0,0) scale(1) rotate(0deg)" }
-    ], timing);
-    const copyAnimations = [copy, priceBlock].map((element, offset) => element.animate([
-      { opacity: 1, transform: "translateY(0)", offset: 0 },
-      { opacity: 0, transform: `translateY(${-sign * 18}px)`, offset: .34 },
-      { opacity: 0, transform: `translateY(${sign * 24}px)`, offset: .46 },
-      { opacity: 1, transform: "translateY(0)", offset: 1 }
-    ], { duration: 620 + offset * 40, easing: "cubic-bezier(.16,1,.3,1)" }));
-    const previewAnimation = nextPreviewButton.animate([
-      { opacity: 1, transform: "translateY(0) scale(1)", offset: 0 },
-      { opacity: 0, transform: "translateY(-14px) scale(.9)", offset: .34 },
-      { opacity: 0, transform: "translateY(18px) scale(.9)", offset: .46 },
-      { opacity: 1, transform: "translateY(0) scale(1)", offset: 1 }
-    ], { duration: 650, easing: "cubic-bezier(.16,1,.3,1)" });
+    const timing = {
+      duration: 760,
+      easing: "cubic-bezier(.16,1,.3,1)",
+      fill: "both",
+    };
+    const outgoing = previousWatch.animate(
+      [
+        { opacity: 1, transform: "translate3d(0,0,0) scale(1) rotate(0deg)" },
+        { opacity: 0, transform: `translate3d(0,${-sign * 58}%,0) scale(.92)` },
+      ],
+      timing,
+    );
+    const incoming = nextWatch.animate(
+      [
+        { opacity: 0, transform: `translate3d(0,${sign * 64}%,0) scale(.92)` },
+        { opacity: 1, transform: "translate3d(0,0,0) scale(1) rotate(0deg)" },
+      ],
+      timing,
+    );
+    const copyAnimations = [copy, priceBlock].map((element, offset) =>
+      element.animate(
+        [
+          { opacity: 1, transform: "translateY(0)", offset: 0 },
+          {
+            opacity: 0,
+            transform: `translateY(${-sign * 18}px)`,
+            offset: 0.34,
+          },
+          { opacity: 0, transform: `translateY(${sign * 24}px)`, offset: 0.46 },
+          { opacity: 1, transform: "translateY(0)", offset: 1 },
+        ],
+        { duration: 620 + offset * 40, easing: "cubic-bezier(.16,1,.3,1)" },
+      ),
+    );
+    const previewAnimation = nextPreviewButton.animate(
+      [
+        { opacity: 1, transform: "translateY(0) scale(1)", offset: 0 },
+        { opacity: 0, transform: "translateY(-14px) scale(.9)", offset: 0.34 },
+        { opacity: 0, transform: "translateY(18px) scale(.9)", offset: 0.46 },
+        { opacity: 1, transform: "translateY(0) scale(1)", offset: 1 },
+      ],
+      { duration: 650, easing: "cubic-bezier(.16,1,.3,1)" },
+    );
 
     window.setTimeout(() => setContent(next), 220);
     Promise.allSettled([outgoing.finished, incoming.finished]).then(() => {
@@ -372,7 +536,10 @@ function initHeroCarousel() {
 
   const move = (direction) => {
     const delta = direction === "next" ? 1 : -1;
-    showSlide((current + delta + heroSlides.length) % heroSlides.length, direction);
+    showSlide(
+      (current + delta + heroSlides.length) % heroSlides.length,
+      direction,
+    );
   };
 
   const startAutoplay = () => {
@@ -387,31 +554,43 @@ function initHeroCarousel() {
       startAutoplay();
     });
   });
-  carousel.addEventListener("pointerenter", () => window.clearInterval(autoplay));
+  carousel.addEventListener("pointerenter", () =>
+    window.clearInterval(autoplay),
+  );
   carousel.addEventListener("pointerleave", startAutoplay);
   carousel.addEventListener("focusin", () => window.clearInterval(autoplay));
-  carousel.addEventListener("focusout", (event) => { if (!carousel.contains(event.relatedTarget)) startAutoplay(); });
+  carousel.addEventListener("focusout", (event) => {
+    if (!carousel.contains(event.relatedTarget)) startAutoplay();
+  });
   startAutoplay();
 }
 
 function initMotion() {
   requestAnimationFrame(() => document.body.classList.add("loaded"));
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("revealed");
-      observer.unobserve(entry.target);
-    });
-  }, { threshold: 0.14 });
-  document.querySelectorAll("[data-reveal]").forEach((element) => observer.observe(element));
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("revealed");
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.14 },
+  );
+  document
+    .querySelectorAll("[data-reveal]")
+    .forEach((element) => observer.observe(element));
 
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && window.matchMedia("(pointer: fine)").matches) {
+  if (
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+    window.matchMedia("(pointer: fine)").matches
+  ) {
     const hero = $(".hero");
     const visual = hero.querySelector(".hero-visual");
     hero.addEventListener("pointermove", (event) => {
       const rect = hero.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - .5;
-      const y = (event.clientY - rect.top) / rect.height - .5;
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
       visual.style.setProperty("--hero-shift-x", `${(-x * 10).toFixed(1)}px`);
       visual.style.setProperty("--hero-shift-y", `${(-y * 8).toFixed(1)}px`);
     });
@@ -429,43 +608,88 @@ function registerAgentTools() {
   const context = document.modelContext;
   if (!context?.registerTool) return;
   const lifecycle = new AbortController();
-  const register = (tool) => Promise.resolve(context.registerTool(tool, { signal: lifecycle.signal })).catch(() => {});
+  const register = (tool) =>
+    Promise.resolve(
+      context.registerTool(tool, { signal: lifecycle.signal }),
+    ).catch(() => {});
   register({
     name: "list_products",
     title: "Lister les produits",
-    description: "Retourne le catalogue FOLKI avec les prix et catégories disponibles.",
-    inputSchema: { type: "object", properties: { category: { type: "string", enum: ["all", "tech", "style", "maison"] } }, additionalProperties: false },
+    description:
+      "Retourne le catalogue FOLKI avec les prix et catégories disponibles.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        category: { type: "string", enum: ["all", "tech", "style", "maison"] },
+      },
+      additionalProperties: false,
+    },
     annotations: { readOnlyHint: true, untrustedContentHint: false },
     execute(input = {}) {
       const category = input.category || "all";
-      return products.filter((p) => category === "all" || p.category === category).map(({ id, name, detail, price, category: type }) => ({ id, name, detail, price_eur: price, category: type }));
-    }
+      return products
+        .filter((p) => category === "all" || p.category === category)
+        .map(({ id, name, detail, price, category: type }) => ({
+          id,
+          name,
+          detail,
+          price_eur: price,
+          category: type,
+        }));
+    },
   });
   register({
     name: "add_cart_items",
     title: "Ajouter au panier",
-    description: "Ajoute une ou plusieurs quantités d’un produit FOLKI au panier visible.",
-    inputSchema: { type: "object", properties: { product_id: { type: "integer", minimum: 1 }, quantity: { type: "integer", minimum: 1, maximum: 20 } }, required: ["product_id", "quantity"], additionalProperties: false },
+    description:
+      "Ajoute une ou plusieurs quantités d’un produit FOLKI au panier visible.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        product_id: { type: "integer", minimum: 1 },
+        quantity: { type: "integer", minimum: 1, maximum: 20 },
+      },
+      required: ["product_id", "quantity"],
+      additionalProperties: false,
+    },
     annotations: { readOnlyHint: false, untrustedContentHint: false },
     execute(input) {
       const product = products.find((p) => p.id === Number(input.product_id));
       const quantity = Number(input.quantity);
-      if (!product || !Number.isInteger(quantity) || quantity < 1 || quantity > 20) throw new Error("Produit ou quantité invalide.");
+      if (
+        !product ||
+        !Number.isInteger(quantity) ||
+        quantity < 1 ||
+        quantity > 20
+      )
+        throw new Error("Produit ou quantité invalide.");
       for (let i = 0; i < quantity; i += 1) addToCart(product.id);
-      return { added: { product_id: product.id, name: product.name, quantity }, cart_total_eur: cartTotal() };
-    }
+      return {
+        added: { product_id: product.id, name: product.name, quantity },
+        cart_total_eur: cartTotal(),
+      };
+    },
   });
   register({
     name: "start_virtual_checkout",
     title: "Ouvrir le paiement virtuel",
-    description: "Ouvre le formulaire de commande simulée avec le panier actuel, sans débiter de carte réelle.",
-    inputSchema: { type: "object", properties: {}, additionalProperties: false },
+    description:
+      "Ouvre le formulaire de commande simulée avec le panier actuel, sans débiter de carte réelle.",
+    inputSchema: {
+      type: "object",
+      properties: {},
+      additionalProperties: false,
+    },
     annotations: { readOnlyHint: false, untrustedContentHint: false },
     execute() {
       if (!cart.length) throw new Error("Le panier est vide.");
       openCheckout();
-      return { status: "checkout_open", item_count: cart.reduce((sum, item) => sum + item.qty, 0), total_eur: cartTotal() + (cartTotal() >= 100 ? 0 : 6.9) };
-    }
+      return {
+        status: "checkout_open",
+        item_count: cart.reduce((sum, item) => sum + item.qty, 0),
+        total_eur: cartTotal() + (cartTotal() >= 100 ? 0 : 6.9),
+      };
+    },
   });
 }
 

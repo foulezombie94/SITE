@@ -1,164 +1,503 @@
 <!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FOLKI — objets essentiels, design affirmé et livraison offerte dès 100 €.">
-  <title>FOLKI — Objets du quotidien, mieux choisis</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231120ff'/%3E%3Cpath d='M8 7h17v5H14v4h9v5h-9v5H8z' fill='%23d7ff36'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="search-panel" id="search-panel" aria-hidden="true"><label for="search-input">Que cherchez-vous ?</label><div><input id="search-input" type="search" placeholder="Casque, sac, parfum…" autocomplete="off"><button id="search-close" aria-label="Fermer la recherche">×</button></div></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="FOLKI — objets essentiels, design affirmé et livraison offerte dès 100 €."
+    />
+    <title>FOLKI — Objets du quotidien, mieux choisis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231120ff'/%3E%3Cpath d='M8 7h17v5H14v4h9v5h-9v5H8z' fill='%23d7ff36'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="search-panel" id="search-panel" aria-hidden="true">
+      <label for="search-input">Que cherchez-vous ?</label>
+      <div>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Casque, sac, parfum…"
+          autocomplete="off"
+        /><button id="search-close" aria-label="Fermer la recherche">×</button>
+      </div>
+    </div>
 
-  <main id="top">
-    <section class="hero" data-hero-carousel>
-      <div class="hero-card" data-hero-slide="0">
-        <div class="hero-theme-layers" aria-hidden="true">
-          <span class="hero-theme-layer theme-azure is-active" data-theme-index="0"></span>
-          <span class="hero-theme-layer theme-emerald" data-theme-index="1"></span>
-          <span class="hero-theme-layer theme-burgundy" data-theme-index="2"></span>
-        </div>
-        <div class="hero-card-nav">
-          <a class="hero-card-label" href="#top" aria-label="FOLKI, accueil">FOLKI<span>•</span></a>
-          <nav class="hero-card-links" aria-label="Navigation du hero">
-            <a class="active" href="#collection">La sélection</a>
-            <a href="#manifeste">Notre vision</a>
-            <a href="#collection">Nouveautés</a>
-          </nav>
-          <div class="hero-card-actions">
-            <button class="icon-button" id="search-toggle" aria-label="Rechercher" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg></button>
-            <button class="cart-button" id="cart-toggle" aria-label="Ouvrir le panier">Panier <span id="cart-count">0</span></button>
+    <main id="top">
+      <section class="hero" data-hero-carousel>
+        <div class="hero-card" data-hero-slide="0">
+          <div class="hero-theme-layers" aria-hidden="true">
+            <span
+              class="hero-theme-layer theme-azure is-active"
+              data-theme-index="0"
+            ></span>
+            <span
+              class="hero-theme-layer theme-emerald"
+              data-theme-index="1"
+            ></span>
+            <span
+              class="hero-theme-layer theme-burgundy"
+              data-theme-index="2"
+            ></span>
           </div>
-        </div>
-        <div class="hero-card-main">
-          <div class="hero-copy" data-hero-sequence>
-            <div class="hero-switcher" aria-label="Naviguer dans la sélection">
-              <button type="button" data-hero-direction="prev" aria-label="Produit précédent">←</button>
-              <button type="button" data-hero-direction="next" aria-label="Produit suivant">→</button>
+          <div class="hero-card-nav">
+            <a class="hero-card-label" href="#top" aria-label="FOLKI, accueil"
+              >FOLKI<span>•</span></a
+            >
+            <nav class="hero-card-links" aria-label="Navigation du hero">
+              <a class="active" href="#collection">La sélection</a>
+              <a href="#manifeste">Notre vision</a>
+              <a href="#collection">Nouveautés</a>
+            </nav>
+            <div class="hero-card-actions">
+              <button
+                class="icon-button"
+                id="search-toggle"
+                aria-label="Rechercher"
+                aria-expanded="false"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="11" cy="11" r="6.5" />
+                  <path d="m16 16 4 4" />
+                </svg>
+              </button>
+              <button
+                class="cart-button"
+                id="cart-toggle"
+                aria-label="Ouvrir le panier"
+              >
+                Panier <span id="cart-count">0</span>
+              </button>
             </div>
-            <div class="hero-copy-details" id="hero-copy-details" aria-live="polite">
-              <h1><span id="hero-title">Acier bleu.</span><br><em id="hero-title-accent">Le temps en clair.</em></h1>
-              <p id="hero-description">Acier brossé, cadran bleu nuit et une ligne nette pensée pour chaque jour.</p>
+          </div>
+          <div class="hero-card-main">
+            <div class="hero-copy" data-hero-sequence>
+              <div
+                class="hero-switcher"
+                aria-label="Naviguer dans la sélection"
+              >
+                <button
+                  type="button"
+                  data-hero-direction="prev"
+                  aria-label="Produit précédent"
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  data-hero-direction="next"
+                  aria-label="Produit suivant"
+                >
+                  →
+                </button>
+              </div>
+              <div
+                class="hero-copy-details"
+                id="hero-copy-details"
+                aria-live="polite"
+              >
+                <h1>
+                  <span id="hero-title">Acier bleu.</span><br /><em
+                    id="hero-title-accent"
+                    >Le temps en clair.</em
+                  >
+                </h1>
+                <p id="hero-description">
+                  Acier brossé, cadran bleu nuit et une ligne nette pensée pour
+                  chaque jour.
+                </p>
+              </div>
+              <a class="primary-cta" href="#collection"
+                >Découvrir la montre <span>↘</span></a
+              >
             </div>
-            <a class="primary-cta" href="#collection">Découvrir la montre <span>↘</span></a>
+            <div class="hero-visual" aria-hidden="true">
+              <span class="hero-watch-orbit"></span>
+              <span class="hero-watch-shadow"></span>
+              <img
+                class="hero-watch is-active"
+                data-watch-index="0"
+                src="assets/watch-azure.webp"
+                alt=""
+                fetchpriority="high"
+              />
+              <img
+                class="hero-watch"
+                data-watch-index="1"
+                src="assets/watch-emerald.webp"
+                alt=""
+                loading="eager"
+              />
+              <img
+                class="hero-watch"
+                data-watch-index="2"
+                src="assets/watch-burgundy.webp"
+                alt=""
+                loading="eager"
+              />
+            </div>
+            <aside
+              class="hero-price"
+              aria-label="Détails de la montre affichée"
+              aria-live="polite"
+            >
+              <span id="hero-model">Ligne Azur</span>
+              <strong id="hero-price">149 €</strong>
+              <del id="hero-old-price">179 €</del>
+              <small id="hero-price-note"
+                >Acier 38 mm · Livraison offerte</small
+              >
+            </aside>
           </div>
-          <div class="hero-visual" aria-hidden="true">
-            <span class="hero-watch-orbit"></span>
-            <span class="hero-watch-shadow"></span>
-            <img class="hero-watch is-active" data-watch-index="0" src="assets/watch-azure.webp" alt="" fetchpriority="high">
-            <img class="hero-watch" data-watch-index="1" src="assets/watch-emerald.webp" alt="" loading="eager">
-            <img class="hero-watch" data-watch-index="2" src="assets/watch-burgundy.webp" alt="" loading="eager">
+          <div class="hero-card-bottom">
+            <span>OBJETS DU QUOTIDIEN, MIEUX CHOISIS.</span>
+            <span class="hero-card-note" id="hero-note"
+              >FOLKI LIGNE / AZUR</span
+            >
+            <button
+              class="hero-next-preview"
+              type="button"
+              data-hero-direction="next"
+              aria-label="Afficher la montre suivante"
+            >
+              <img
+                id="hero-next-watch"
+                src="assets/watch-emerald.webp"
+                alt=""
+                aria-hidden="true"
+              />
+            </button>
+            <span class="hero-index" id="hero-index">01 / 03</span>
           </div>
-          <aside class="hero-price" aria-label="Détails de la montre affichée" aria-live="polite">
-            <span id="hero-model">Ligne Azur</span>
-            <strong id="hero-price">149 €</strong>
-            <del id="hero-old-price">179 €</del>
-            <small id="hero-price-note">Acier 38 mm · Livraison offerte</small>
-          </aside>
         </div>
-        <div class="hero-card-bottom">
-          <span>OBJETS DU QUOTIDIEN, MIEUX CHOISIS.</span>
-          <span class="hero-card-note" id="hero-note">FOLKI LIGNE / AZUR</span>
-          <button class="hero-next-preview" type="button" data-hero-direction="next" aria-label="Afficher la montre suivante">
-            <img id="hero-next-watch" src="assets/watch-emerald.webp" alt="" aria-hidden="true">
+      </section>
+
+      <section class="collection" id="collection">
+        <div class="section-heading" data-reveal>
+          <div>
+            <p class="eyebrow">SHOP</p>
+            <h2>La sélection</h2>
+          </div>
+          <p>Des pièces choisies une à une.<br />Rien de plus, rien de trop.</p>
+        </div>
+        <div
+          class="filters"
+          role="group"
+          aria-label="Filtrer les produits"
+          data-reveal
+        >
+          <button class="filter active" data-filter="all">
+            Tout <span>08</span>
           </button>
-          <span class="hero-index" id="hero-index">01 / 03</span>
+          <button class="filter" data-filter="tech">
+            Tech <span>02</span>
+          </button>
+          <button class="filter" data-filter="style">
+            Style <span>04</span>
+          </button>
+          <button class="filter" data-filter="maison">
+            Maison <span>02</span>
+          </button>
         </div>
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="manifesto" id="manifeste">
+        <p class="eyebrow" data-reveal>NOTRE VISION</p>
+        <p class="manifesto-copy" data-reveal>
+          Le quotidien n’a pas besoin de plus.<br />Il a besoin de
+          <em>mieux.</em>
+        </p>
+        <div class="manifesto-notes" data-reveal>
+          <span>01 — Choisi avec exigence</span
+          ><span>02 — Conçu pour durer</span><span>03 — Expédié avec soin</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand" href="#top">FOLKI<span>•</span></a>
+      <p>Objets du quotidien, mieux choisis.</p>
+      <p>© 2026 FOLKI</p>
+    </footer>
+
+    <div class="overlay" id="overlay"></div>
+    <aside
+      class="cart-drawer"
+      id="cart-drawer"
+      aria-hidden="true"
+      aria-labelledby="cart-title"
+    >
+      <div class="drawer-head">
+        <div>
+          <p class="eyebrow">VOTRE SÉLECTION</p>
+          <h2 id="cart-title">Panier <span id="drawer-count">0</span></h2>
+        </div>
+        <button
+          class="close-button"
+          id="cart-close"
+          aria-label="Fermer le panier"
+        >
+          ×
+        </button>
       </div>
-    </section>
-
-    <section class="collection" id="collection">
-      <div class="section-heading" data-reveal>
-        <div><p class="eyebrow">SHOP</p><h2>La sélection</h2></div>
-        <p>Des pièces choisies une à une.<br>Rien de plus, rien de trop.</p>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-empty" id="cart-empty">
+        <img
+          class="state-mascot state-mascot-cart"
+          src="assets/folki-mascot.svg"
+          alt=""
+          aria-hidden="true"
+        />
+        <p>Votre panier attend<br />sa première pièce.</p>
+        <button data-close-cart>Voir la sélection</button>
       </div>
-      <div class="filters" role="group" aria-label="Filtrer les produits" data-reveal>
-        <button class="filter active" data-filter="all">Tout <span>08</span></button>
-        <button class="filter" data-filter="tech">Tech <span>02</span></button>
-        <button class="filter" data-filter="style">Style <span>04</span></button>
-        <button class="filter" data-filter="maison">Maison <span>02</span></button>
+      <div class="cart-summary" id="cart-summary">
+        <div><span>Sous-total</span><strong id="subtotal">0,00 €</strong></div>
+        <div><span>Livraison</span><strong id="shipping">Offerte</strong></div>
+        <div class="total">
+          <span>Total</span><strong id="total">0,00 €</strong>
+        </div>
+        <button class="checkout-button" id="checkout-button">
+          Commander <span>→</span>
+        </button>
+        <p>Paiement 100 % simulé — aucune carte réelle ne sera débitée.</p>
       </div>
-      <div class="product-grid" id="product-grid" aria-live="polite"></div>
-    </section>
+    </aside>
 
-    <section class="manifesto" id="manifeste">
-      <p class="eyebrow" data-reveal>NOTRE VISION</p>
-      <p class="manifesto-copy" data-reveal>Le quotidien n’a pas besoin de plus.<br>Il a besoin de <em>mieux.</em></p>
-      <div class="manifesto-notes" data-reveal><span>01 — Choisi avec exigence</span><span>02 — Conçu pour durer</span><span>03 — Expédié avec soin</span></div>
-    </section>
-  </main>
-
-  <footer><a class="brand" href="#top">FOLKI<span>•</span></a><p>Objets du quotidien, mieux choisis.</p><p>© 2026 FOLKI</p></footer>
-
-  <div class="overlay" id="overlay"></div>
-  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-labelledby="cart-title">
-    <div class="drawer-head"><div><p class="eyebrow">VOTRE SÉLECTION</p><h2 id="cart-title">Panier <span id="drawer-count">0</span></h2></div><button class="close-button" id="cart-close" aria-label="Fermer le panier">×</button></div>
-    <div class="cart-items" id="cart-items"></div>
-    <div class="cart-empty" id="cart-empty"><img class="state-mascot state-mascot-cart" src="assets/folki-mascot.svg" alt="" aria-hidden="true"><p>Votre panier attend<br>sa première pièce.</p><button data-close-cart>Voir la sélection</button></div>
-    <div class="cart-summary" id="cart-summary">
-      <div><span>Sous-total</span><strong id="subtotal">0,00 €</strong></div>
-      <div><span>Livraison</span><strong id="shipping">Offerte</strong></div>
-      <div class="total"><span>Total</span><strong id="total">0,00 €</strong></div>
-      <button class="checkout-button" id="checkout-button">Commander <span>→</span></button>
-      <p>Paiement 100 % simulé — aucune carte réelle ne sera débitée.</p>
-    </div>
-  </aside>
-
-  <div class="modal" id="checkout-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="checkout-title">
-    <div class="checkout-panel">
-      <div class="checkout-topbar">
-        <span class="checkout-logo">FOLKI<span>•</span></span>
-        <ol class="checkout-progress" id="checkout-progress" aria-label="Progression de la commande">
-          <li class="complete"><span>✓</span>Panier</li>
-          <li class="active"><span>2</span>Paiement</li>
-          <li><span>3</span>Confirmation</li>
-        </ol>
-        <button class="close-button" id="checkout-close" aria-label="Fermer">×</button>
-      </div>
-      <div id="checkout-form-view">
-        <div class="checkout-stage">
-          <div class="checkout-heading"><h2 id="checkout-title">Finaliser la commande</h2><p>Tout est prêt. Vérifiez vos informations puis confirmez votre achat virtuel.</p></div>
-          <div class="checkout-layout">
-          <form id="checkout-form">
-            <section class="form-section">
-              <div class="form-section-title"><span class="line-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20v-2.5A4.5 4.5 0 0 1 8.5 13h7a4.5 4.5 0 0 1 4.5 4.5V20M12 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/></svg></span><div><h3>Coordonnées</h3><p>Pour préparer votre confirmation de commande.</p></div></div>
-              <div class="field-row"><label>Prénom<input name="firstname" required autocomplete="given-name" placeholder="Lina"></label><label>Nom<input name="lastname" required autocomplete="family-name" placeholder="Martin"></label></div>
-              <label>E-mail<input type="email" name="email" required autocomplete="email" placeholder="lina@exemple.fr"></label>
-              <label>Adresse<input name="address" required autocomplete="street-address" placeholder="12 rue des Fleurs"></label>
-              <div class="field-row"><label>Code postal<input name="postal" required inputmode="numeric" pattern="[0-9]{5}" placeholder="75010"></label><label>Ville<input name="city" required autocomplete="address-level2" placeholder="Paris"></label></div>
-            </section>
-            <section class="form-section payment-section">
-              <div class="form-section-title"><span class="line-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6 15h4"/></svg></span><div><h3>Paiement virtuel</h3><p>Aucun paiement réel ne sera effectué.</p></div><span class="demo-chip">DÉMO</span></div>
-              <label>Numéro de carte<div class="card-input"><input name="card" required inputmode="numeric" value="4242 4242 4242 4242" aria-describedby="demo-card"><span aria-hidden="true">••</span></div><small id="demo-card">Carte de démonstration préremplie</small></label>
-              <div class="field-row"><label>Expiration<input name="expiry" required value="12/30"></label><label>CVC<input name="cvc" required value="123" inputmode="numeric"></label></div>
-            </section>
-            <button class="pay-button" type="submit"><span>Confirmer l’achat virtuel</span><strong id="pay-total">0,00 €</strong></button>
-            <div class="checkout-trust"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5z"/></svg>Simulation sécurisée</span><span>Aucune carte débitée</span></div>
-          </form>
-          <aside class="order-review"><div class="review-head"><div><p>VOTRE SÉLECTION</p><h3>Résumé</h3></div><span id="review-count">0 article</span></div><div id="review-items"></div><div class="review-delivery"><span>Livraison</span><strong id="review-shipping">Offerte</strong></div><div class="review-total"><span>Total</span><strong id="review-total">0,00 €</strong></div><p class="review-note">Retours gratuits pendant 30 jours. Votre panier reste enregistré sur cet appareil.</p></aside>
+    <div
+      class="modal"
+      id="checkout-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-labelledby="checkout-title"
+    >
+      <div class="checkout-panel">
+        <div class="checkout-topbar">
+          <span class="checkout-logo">FOLKI<span>•</span></span>
+          <ol
+            class="checkout-progress"
+            id="checkout-progress"
+            aria-label="Progression de la commande"
+          >
+            <li class="complete"><span>✓</span>Panier</li>
+            <li class="active"><span>2</span>Paiement</li>
+            <li><span>3</span>Confirmation</li>
+          </ol>
+          <button class="close-button" id="checkout-close" aria-label="Fermer">
+            ×
+          </button>
+        </div>
+        <div id="checkout-form-view">
+          <div class="checkout-stage">
+            <div class="checkout-heading">
+              <h2 id="checkout-title">Finaliser la commande</h2>
+              <p>
+                Tout est prêt. Vérifiez vos informations puis confirmez votre
+                achat virtuel.
+              </p>
+            </div>
+            <div class="checkout-layout">
+              <form id="checkout-form">
+                <section class="form-section">
+                  <div class="form-section-title">
+                    <span class="line-icon"
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          d="M4 20v-2.5A4.5 4.5 0 0 1 8.5 13h7a4.5 4.5 0 0 1 4.5 4.5V20M12 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
+                        /></svg
+                    ></span>
+                    <div>
+                      <h3>Coordonnées</h3>
+                      <p>Pour préparer votre confirmation de commande.</p>
+                    </div>
+                  </div>
+                  <div class="field-row">
+                    <label
+                      >Prénom<input
+                        name="firstname"
+                        required
+                        autocomplete="given-name"
+                        placeholder="Lina" /></label
+                    ><label
+                      >Nom<input
+                        name="lastname"
+                        required
+                        autocomplete="family-name"
+                        placeholder="Martin"
+                    /></label>
+                  </div>
+                  <label
+                    >E-mail<input
+                      type="email"
+                      name="email"
+                      required
+                      autocomplete="email"
+                      placeholder="lina@exemple.fr"
+                  /></label>
+                  <label
+                    >Adresse<input
+                      name="address"
+                      required
+                      autocomplete="street-address"
+                      placeholder="12 rue des Fleurs"
+                  /></label>
+                  <div class="field-row">
+                    <label
+                      >Code postal<input
+                        name="postal"
+                        required
+                        inputmode="numeric"
+                        pattern="[0-9]{5}"
+                        placeholder="75010" /></label
+                    ><label
+                      >Ville<input
+                        name="city"
+                        required
+                        autocomplete="address-level2"
+                        placeholder="Paris"
+                    /></label>
+                  </div>
+                </section>
+                <section class="form-section payment-section">
+                  <div class="form-section-title">
+                    <span class="line-icon"
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
+                        <path d="M2.5 10h19M6 15h4" /></svg
+                    ></span>
+                    <div>
+                      <h3>Paiement virtuel</h3>
+                      <p>Aucun paiement réel ne sera effectué.</p>
+                    </div>
+                    <span class="demo-chip">DÉMO</span>
+                  </div>
+                  <label
+                    >Numéro de carte
+                    <div class="card-input">
+                      <input
+                        name="card"
+                        required
+                        inputmode="numeric"
+                        value="4242 4242 4242 4242"
+                        aria-describedby="demo-card"
+                      /><span aria-hidden="true">••</span>
+                    </div>
+                    <small id="demo-card"
+                      >Carte de démonstration préremplie</small
+                    ></label
+                  >
+                  <div class="field-row">
+                    <label
+                      >Expiration<input
+                        name="expiry"
+                        required
+                        value="12/30" /></label
+                    ><label
+                      >CVC<input
+                        name="cvc"
+                        required
+                        value="123"
+                        inputmode="numeric"
+                    /></label>
+                  </div>
+                </section>
+                <button class="pay-button" type="submit">
+                  <span>Confirmer l’achat virtuel</span
+                  ><strong id="pay-total">0,00 €</strong>
+                </button>
+                <div class="checkout-trust">
+                  <span
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5z" /></svg
+                    >Simulation sécurisée</span
+                  ><span>Aucune carte débitée</span>
+                </div>
+              </form>
+              <aside class="order-review">
+                <div class="review-head">
+                  <div>
+                    <p>VOTRE SÉLECTION</p>
+                    <h3>Résumé</h3>
+                  </div>
+                  <span id="review-count">0 article</span>
+                </div>
+                <div id="review-items"></div>
+                <div class="review-delivery">
+                  <span>Livraison</span
+                  ><strong id="review-shipping">Offerte</strong>
+                </div>
+                <div class="review-total">
+                  <span>Total</span><strong id="review-total">0,00 €</strong>
+                </div>
+                <p class="review-note">
+                  Retours gratuits pendant 30 jours. Votre panier reste
+                  enregistré sur cet appareil.
+                </p>
+              </aside>
+            </div>
           </div>
         </div>
+        <div class="success-view" id="success-view" hidden aria-live="polite">
+          <div class="confetti" id="confetti" aria-hidden="true"></div>
+          <img
+            class="state-mascot state-mascot-success"
+            src="assets/folki-mascot.svg"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="success-mark"><span>✓</span></div>
+          <p class="eyebrow">COMMANDE CONFIRMÉE</p>
+          <h2>Merci, <span id="customer-name"></span>.</h2>
+          <p>
+            Votre commande virtuelle <strong id="order-number"></strong> est
+            confirmée. Un récapitulatif fictif a été préparé.
+          </p>
+          <button class="primary-cta" id="continue-button">
+            Continuer mes achats <span>→</span>
+          </button>
+        </div>
       </div>
-      <div class="success-view" id="success-view" hidden aria-live="polite"><div class="confetti" id="confetti" aria-hidden="true"></div><img class="state-mascot state-mascot-success" src="assets/folki-mascot.svg" alt="" aria-hidden="true"><div class="success-mark"><span>✓</span></div><p class="eyebrow">COMMANDE CONFIRMÉE</p><h2>Merci, <span id="customer-name"></span>.</h2><p>Votre commande virtuelle <strong id="order-number"></strong> est confirmée. Un récapitulatif fictif a été préparé.</p><button class="primary-cta" id="continue-button">Continuer mes achats <span>→</span></button></div>
     </div>
-  </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <aside class="folki-mascot" id="folki-mascot" aria-label="Assistant FOLKI">
-    <div class="mascot-bubble" id="mascot-bubble" hidden>
-      <p class="mascot-kicker">FOLKI FRIEND</p>
-      <h2>Besoin d’un coup de cœur&nbsp;?</h2>
-      <p id="mascot-message">Je peux vous ramener vers la sélection.</p>
-      <button class="mascot-link" id="mascot-shop">Voir la sélection <span>→</span></button>
-    </div>
-    <button class="mascot-toggle" id="mascot-toggle" type="button" aria-expanded="false" aria-controls="mascot-bubble" aria-label="Ouvrir l’assistant FOLKI">
-      <img class="mascot-art" src="assets/folki-mascot.svg" alt="" aria-hidden="true">
-    </button>
-  </aside>
-  <script src="app.js"></script>
-</body>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <aside class="folki-mascot" id="folki-mascot" aria-label="Assistant FOLKI">
+      <div class="mascot-bubble" id="mascot-bubble" hidden>
+        <p class="mascot-kicker">FOLKI FRIEND</p>
+        <h2>Besoin d’un coup de cœur&nbsp;?</h2>
+        <p id="mascot-message">Je peux vous ramener vers la sélection.</p>
+        <button class="mascot-link" id="mascot-shop">
+          Voir la sélection <span>→</span>
+        </button>
+      </div>
+      <button
+        class="mascot-toggle"
+        id="mascot-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mascot-bubble"
+        aria-label="Ouvrir l’assistant FOLKI"
+      >
+        <img
+          class="mascot-art"
+          src="assets/folki-mascot.svg"
+          alt=""
+          aria-hidden="true"
+        />
+      </button>
+    </aside>
+    <script src="app.js"></script>
+  </body>
 </html>
