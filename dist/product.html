@@ -7,8 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&display=optional"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
     <link rel="stylesheet" href="/styles.css" />
     <link rel="stylesheet" href="/product-overrides.css" />
@@ -25,7 +27,19 @@
     <main class="watch-main">
       <section class="watch-stage">
         <div class="watch-rings" aria-hidden="true"></div>
-        <img id="watch-image" src="/assets/watch-azure.webp" alt="" />
+        <img
+          id="watch-image"
+          src="/assets/watch-azure.webp"
+          srcset="
+            /assets/watch-azure-mobile.webp 420w,
+            /assets/watch-azure.webp        900w
+          "
+          sizes="(max-width: 900px) 92vw, 50vw"
+          width="900"
+          height="1125"
+          fetchpriority="high"
+          alt=""
+        />
         <p id="watch-note"></p>
       </section>
       <section class="watch-details">
@@ -45,15 +59,26 @@
           <p>Choisir une finition</p>
           <nav aria-label="Finitions">
             <a href="/product.html?watch=azur" data-variant="azur"
-              ><img src="/assets/watch-azure.webp" alt="" /><span>Azur</span></a
+              ><img
+                src="/assets/watch-azure-mobile.webp"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              /><span>Azur</span></a
             ><a href="/product.html?watch=emeraude" data-variant="emeraude"
-              ><img src="/assets/watch-emerald.webp" alt="" /><span
-                >Émeraude</span
-              ></a
+              ><img
+                src="/assets/watch-emerald-mobile.webp"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              /><span>Émeraude</span></a
             ><a href="/product.html?watch=minuit" data-variant="minuit"
-              ><img src="/assets/watch-burgundy.webp" alt="" /><span
-                >Minuit</span
-              ></a
+              ><img
+                src="/assets/watch-burgundy-mobile.webp"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              /><span>Minuit</span></a
             >
           </nav>
         </div>

@@ -5,8 +5,8 @@
   --lime: #d7ff36;
   --muted: #a4a5aa;
   --line: rgba(255, 255, 255, 0.15);
-  --sans: "DM Sans", sans-serif;
-  --display: "Space Grotesk", sans-serif;
+  --sans: "DM Sans", Arial, sans-serif;
+  --display: "Space Grotesk", Arial, sans-serif;
   color-scheme: dark;
 }
 * {
@@ -1200,6 +1200,15 @@ body.loaded .site-header {
   }
   .confetti {
     display: none;
+  }
+}
+
+@media (max-width: 780px) {
+  .collection,
+  .manifesto,
+  footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
   }
 }
 

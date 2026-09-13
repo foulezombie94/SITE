@@ -8,8 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=optional"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
     <style>
       :root {
@@ -383,7 +385,14 @@
           </div>
         </section>
         <div class="mascot-stage" aria-hidden="true">
-          <img class="mascot" src="/assets/folki-404-adapted.png" alt="" />
+          <img
+            class="mascot"
+            src="/assets/folki-404-mobile.webp"
+            width="576"
+            height="720"
+            fetchpriority="high"
+            alt=""
+          />
         </div>
       </main>
       <footer>

@@ -4,6 +4,7 @@ const watches = {
     name: "Montre Ligne Azur",
     tagline: "Le temps en clair.",
     image: "/assets/watch-azure.webp",
+    mobileImage: "/assets/watch-azure-mobile.webp",
     price: 149,
     old: 179,
     accent: "#3d86ff",
@@ -23,6 +24,7 @@ const watches = {
     name: "Montre Ligne Émeraude",
     tagline: "L’élégance juste.",
     image: "/assets/watch-emerald.webp",
+    mobileImage: "/assets/watch-emerald-mobile.webp",
     price: 169,
     old: 199,
     accent: "#efb879",
@@ -42,6 +44,7 @@ const watches = {
     name: "Montre Ligne Minuit",
     tagline: "Le caractère net.",
     image: "/assets/watch-burgundy.webp",
+    mobileImage: "/assets/watch-burgundy-mobile.webp",
     price: 159,
     old: 189,
     accent: "#ff758e",
@@ -88,6 +91,8 @@ function renderWatch(slug, updateUrl = true) {
   $("#watch-tagline").textContent = currentWatch.tagline;
   $("#watch-description").textContent = currentWatch.description;
   $("#watch-image").src = currentWatch.image;
+  $("#watch-image").srcset =
+    `${currentWatch.mobileImage} 420w, ${currentWatch.image} 900w`;
   $("#watch-image").alt = currentWatch.name;
   $("#watch-note").textContent = currentWatch.note;
   $("#watch-price").textContent = euro.format(currentWatch.price);

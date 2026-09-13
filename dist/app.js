@@ -7,6 +7,7 @@ const products = [
     category: "style",
     icon: "⌚",
     image: "assets/watch-azure.webp",
+    mobileImage: "assets/watch-azure-mobile.webp",
     href: "/product.html?watch=azur",
     accent: "#3d86ff",
     badge: "BEST-SELLER",
@@ -19,6 +20,7 @@ const products = [
     category: "style",
     icon: "⌚",
     image: "assets/watch-emerald.webp",
+    mobileImage: "assets/watch-emerald-mobile.webp",
     href: "/product.html?watch=emeraude",
     accent: "#16875d",
     badge: "NOUVEAU",
@@ -31,6 +33,7 @@ const products = [
     category: "style",
     icon: "⌚",
     image: "assets/watch-burgundy.webp",
+    mobileImage: "assets/watch-burgundy-mobile.webp",
     href: "/product.html?watch=minuit",
     accent: "#8c243e",
     badge: "ÉDITION 01",
@@ -138,7 +141,7 @@ function renderProducts() {
   $("#product-grid").innerHTML = visible.length
     ? visible
         .map((p, index) => {
-          const artwork = `${p.badge ? `<span class="badge">${p.badge}</span>` : ""}${p.image ? `<img class="product-image" src="${p.image}" alt="${p.name}" loading="lazy">` : `<span class="product-icon" aria-hidden="true">${p.icon}</span>`}`;
+          const artwork = `${p.badge ? `<span class="badge">${p.badge}</span>` : ""}${p.image ? `<img class="product-image" src="${p.image}"${p.mobileImage ? ` srcset="${p.mobileImage} 420w, ${p.image} 900w" sizes="(max-width: 780px) 92vw, 32vw"` : ""} alt="${p.name}" width="900" height="1125" loading="lazy" decoding="async">` : `<span class="product-icon" aria-hidden="true">${p.icon}</span>`}`;
           const info = `<h3>${p.name}</h3><p>${p.detail}</p><span class="price">${euro.format(p.price)}</span>`;
           return `<article class="product-card${p.href ? " watch-card" : ""}" data-category="${p.category}" style="--i:${index}">
       <div class="product-visual" style="--accent:${p.accent}">
@@ -149,7 +152,7 @@ function renderProducts() {
     </article>`;
         })
         .join("")
-    : `<div class="no-results"><img class="state-mascot state-mascot-error" src="assets/folki-mascot.svg" alt="" aria-hidden="true"><p>Aucun objet ne correspond à votre recherche.</p><button type="button" data-reset-search>Réinitialiser la recherche <span>↗</span></button></div>`;
+    : `<div class="no-results"><img class="state-mascot state-mascot-error" src="assets/folki-mascot-mobile.webp" alt="" width="172" height="236" loading="lazy" decoding="async" aria-hidden="true"><p>Aucun objet ne correspond à votre recherche.</p><button type="button" data-reset-search>Réinitialiser la recherche <span>↗</span></button></div>`;
 }
 
 function cartDetails() {
@@ -213,7 +216,7 @@ function renderCart() {
   $("#cart-items").innerHTML = details
     .map(
       (item) => `
-    <div class="cart-item"><div class="cart-item-icon">${item.image ? `<img src="${item.image}" alt="${item.name}">` : item.icon}</div><div><h3>${item.name}</h3><p>${euro.format(item.price)}</p><div class="quantity"><button data-qty="-1" data-id="${item.id}" aria-label="Retirer une unité">−</button><span>${item.qty}</span><button data-qty="1" data-id="${item.id}" aria-label="Ajouter une unité">+</button></div></div><button class="remove" data-remove="${item.id}">Retirer</button></div>`,
+    <div class="cart-item"><div class="cart-item-icon">${item.image ? `<img src="${item.mobileImage || item.image}" alt="${item.name}" width="420" height="525" loading="lazy" decoding="async">` : item.icon}</div><div><h3>${item.name}</h3><p>${euro.format(item.price)}</p><div class="quantity"><button data-qty="-1" data-id="${item.id}" aria-label="Retirer une unité">−</button><span>${item.qty}</span><button data-qty="1" data-id="${item.id}" aria-label="Ajouter une unité">+</button></div></div><button class="remove" data-remove="${item.id}">Retirer</button></div>`,
     )
     .join("");
   const shipping = subtotal >= 100 || subtotal === 0 ? 0 : 6.9;
@@ -439,7 +442,9 @@ function initHeroCarousel() {
     priceBlock.querySelector("small").textContent = slide.detail;
     $("#hero-note").textContent = slide.note;
     $("#hero-index").textContent = `${String(index + 1).padStart(2, "0")} / 03`;
-    nextPreview.src = watches[(index + 1) % watches.length].getAttribute("src");
+    const previewWatch = watches[(index + 1) % watches.length];
+    nextPreview.src =
+      previewWatch.currentSrc || previewWatch.getAttribute("src");
   };
 
   const showSlide = (next, direction = "next") => {
@@ -613,11 +618,19 @@ function initScrollFilm() {
   let targetTime = 0;
   let frame = 0;
   let duration = 0;
+  let sectionTop = 0;
+  let scrollDistance = 1;
+
+  const measure = () => {
+    sectionTop = window.scrollY + section.getBoundingClientRect().top;
+    scrollDistance = Math.max(1, section.offsetHeight - window.innerHeight);
+  };
 
   const getProgress = () => {
-    const rect = section.getBoundingClientRect();
-    const distance = Math.max(1, section.offsetHeight - window.innerHeight);
-    return Math.min(1, Math.max(0, -rect.top / distance));
+    return Math.min(
+      1,
+      Math.max(0, (window.scrollY - sectionTop) / scrollDistance),
+    );
   };
 
   const render = () => {
@@ -644,11 +657,38 @@ function initScrollFilm() {
   video.addEventListener("loadedmetadata", () => {
     duration = Number.isFinite(video.duration) ? video.duration : 0;
     video.pause();
+    measure();
     if (reducedMotion && duration) video.currentTime = duration * 0.45;
     syncToScroll();
   });
+
+  const loadVideo = () => {
+    if (!video.dataset.src) return;
+    video.src = video.dataset.src;
+    delete video.dataset.src;
+    video.preload = "auto";
+    video.load();
+  };
+  const loader = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      loadVideo();
+      loader.disconnect();
+    },
+    { rootMargin: "100px 0px" },
+  );
+  loader.observe(section);
+
+  measure();
   window.addEventListener("scroll", syncToScroll, { passive: true });
-  window.addEventListener("resize", syncToScroll, { passive: true });
+  window.addEventListener(
+    "resize",
+    () => {
+      measure();
+      syncToScroll();
+    },
+    { passive: true },
+  );
   document.addEventListener("visibilitychange", () => {
     if (document.hidden && frame) {
       cancelAnimationFrame(frame);
