@@ -3725,6 +3725,116 @@ body.loaded .hero-visual {
     transform: none;
   }
 }
+
+/* Scroll-controlled film — placed between the hero and the collection */
+.scroll-film {
+  position: relative;
+  height: 320vh;
+  background: #08090b;
+}
+.scroll-film-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #08090b;
+}
+.scroll-film-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  background: #08090b;
+}
+.scroll-film-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(8, 9, 11, 0.6) 0%, transparent 55%),
+    linear-gradient(0deg, rgba(8, 9, 11, 0.5) 0%, transparent 42%);
+}
+.scroll-film-copy {
+  position: absolute;
+  left: clamp(24px, 5vw, 80px);
+  bottom: clamp(54px, 8vh, 100px);
+  z-index: 2;
+  color: #f5f5f2;
+  pointer-events: none;
+}
+.scroll-film-copy p {
+  margin: 0 0 18px;
+  color: var(--lime);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+.scroll-film-copy strong {
+  display: block;
+  max-width: 760px;
+  font: 600 clamp(3rem, 6.8vw, 7rem) / 0.9 var(--display);
+  letter-spacing: -0.04em;
+}
+.scroll-film-progress {
+  position: absolute;
+  right: clamp(24px, 4vw, 64px);
+  bottom: clamp(32px, 5vh, 60px);
+  z-index: 2;
+  width: clamp(120px, 15vw, 220px);
+  height: 2px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.28);
+}
+.scroll-film-progress span {
+  display: block;
+  width: var(--film-progress, 0%);
+  height: 100%;
+  background: var(--lime);
+}
+@media (max-width: 780px) {
+  .scroll-film {
+    height: 260vh;
+  }
+  .scroll-film-sticky {
+    min-height: 500px;
+  }
+  .scroll-film-video {
+    object-position: center center;
+  }
+  .scroll-film-shade {
+    background: linear-gradient(
+      0deg,
+      rgba(8, 9, 11, 0.72) 0%,
+      rgba(8, 9, 11, 0.08) 70%
+    );
+  }
+  .scroll-film-copy strong {
+    font-size: clamp(2.8rem, 13vw, 5rem);
+  }
+  .scroll-film-progress {
+    right: 6vw;
+    bottom: 28px;
+    left: 6vw;
+    width: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-film {
+    height: auto;
+  }
+  .scroll-film-sticky {
+    position: relative;
+    height: min(780px, 90svh);
+  }
+  .scroll-film-progress {
+    display: none;
+  }
+}
 @media (max-width: 900px) {
   .watch-head {
     grid-template-columns: 1fr auto;

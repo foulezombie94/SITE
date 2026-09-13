@@ -601,8 +601,67 @@ function initMotion() {
   }
 }
 
+function initScrollFilm() {
+  const section = document.querySelector(".scroll-film");
+  const video = document.querySelector("#scroll-film-video");
+  const progressBar = document.querySelector("#scroll-film-progress");
+  if (!section || !video) return;
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  let targetTime = 0;
+  let frame = 0;
+  let duration = 0;
+
+  const getProgress = () => {
+    const rect = section.getBoundingClientRect();
+    const distance = Math.max(1, section.offsetHeight - window.innerHeight);
+    return Math.min(1, Math.max(0, -rect.top / distance));
+  };
+
+  const render = () => {
+    frame = 0;
+    if (!duration || reducedMotion) return;
+    const difference = targetTime - video.currentTime;
+    if (Math.abs(difference) < 0.012) {
+      video.currentTime = targetTime;
+      return;
+    }
+    video.currentTime += difference * 0.18;
+    frame = requestAnimationFrame(render);
+  };
+
+  const syncToScroll = () => {
+    if (!duration) return;
+    const progress = getProgress();
+    progressBar?.style.setProperty("--film-progress", `${progress * 100}%`);
+    if (reducedMotion) return;
+    targetTime = progress * Math.max(0, duration - 0.04);
+    if (!frame) frame = requestAnimationFrame(render);
+  };
+
+  video.addEventListener("loadedmetadata", () => {
+    duration = Number.isFinite(video.duration) ? video.duration : 0;
+    video.pause();
+    if (reducedMotion && duration) video.currentTime = duration * 0.45;
+    syncToScroll();
+  });
+  window.addEventListener("scroll", syncToScroll, { passive: true });
+  window.addEventListener("resize", syncToScroll, { passive: true });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden && frame) {
+      cancelAnimationFrame(frame);
+      frame = 0;
+    } else {
+      syncToScroll();
+    }
+  });
+}
+
 initHeroCarousel();
 initMotion();
+initScrollFilm();
 
 function registerAgentTools() {
   const context = document.modelContext;
