@@ -211,9 +211,10 @@ body.loaded .hero-visual{animation:hero-visual-in .7s .18s cubic-bezier(.16,1,.3
 @media(max-width:780px){.hero-switcher{gap:10px;margin-bottom:22px}.hero-switcher button{width:50px;height:50px;font-size:1.15rem}}
 
 /* Carousel horloger — trois ambiances qui se fondent avec chaque montre. */
-.hero-card{--hero-highlight:#d7ff36;background:#07111f;transition:color .65s ease}
-.hero-card[data-hero-slide="1"]{--hero-highlight:#efb879}
-.hero-card[data-hero-slide="2"]{--hero-highlight:#ff758e}
+.hero-card{--hero-highlight:#d7ff36;--hero-selection:#3d86ff;background:#07111f;transition:color .65s ease}
+.hero-card[data-hero-slide="1"]{--hero-highlight:#efb879;--hero-selection:#16875d}
+.hero-card[data-hero-slide="2"]{--hero-highlight:#ff758e;--hero-selection:#8c243e}
+.hero-card::selection,.hero-card ::selection{background:var(--hero-selection);color:#fff}
 .hero-card::before,.hero-card::after{display:none}
 .hero-theme-layers{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .hero-theme-layer{position:absolute;inset:-3%;opacity:0;transition:opacity .72s cubic-bezier(.16,1,.3,1)}
