@@ -115,7 +115,7 @@ function renderCart() {
   $("#cart-empty").hidden = details.length > 0;
   $("#cart-summary").hidden = details.length === 0;
   $("#cart-items").innerHTML = details.map((item) => `
-    <div class="cart-item"><div class="cart-item-icon">${item.icon}</div><div><h3>${item.name}</h3><p>${euro.format(item.price)}</p><div class="quantity"><button data-qty="-1" data-id="${item.id}" aria-label="Retirer une unité">−</button><span>${item.qty}</span><button data-qty="1" data-id="${item.id}" aria-label="Ajouter une unité">+</button></div></div><button class="remove" data-remove="${item.id}">Retirer</button></div>`).join("");
+    <div class="cart-item"><div class="cart-item-icon">${item.image ? `<img src="${item.image}" alt="${item.name}">` : item.icon}</div><div><h3>${item.name}</h3><p>${euro.format(item.price)}</p><div class="quantity"><button data-qty="-1" data-id="${item.id}" aria-label="Retirer une unité">−</button><span>${item.qty}</span><button data-qty="1" data-id="${item.id}" aria-label="Ajouter une unité">+</button></div></div><button class="remove" data-remove="${item.id}">Retirer</button></div>`).join("");
   const shipping = subtotal >= 100 || subtotal === 0 ? 0 : 6.9;
   const total = subtotal + shipping;
   $("#subtotal").textContent = euro.format(subtotal);
