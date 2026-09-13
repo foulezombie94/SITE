@@ -1,0 +1,19 @@
+---
+interface Props {
+  document: string;
+}
+
+const { document } = Astro.props;
+const language = document.match(/<html[^>]*\blang=["']([^"']+)["']/i)?.[1] ?? "fr";
+const head = document.match(/<head[^>]*>([\s\S]*?)<\/head>/i)?.[1] ?? "";
+const bodyMatch = document.match(/<body([^>]*)>([\s\S]*?)<\/body>/i);
+const bodyAttributes = bodyMatch?.[1] ?? "";
+const body = bodyMatch?.[2] ?? "";
+const bodyClass = bodyAttributes.match(/\bclass=["']([^"']*)["']/i)?.[1];
+---
+
+<!doctype html>
+<html lang={language}>
+  <head set:html={head}></head>
+  <body class={bodyClass} set:html={body}></body>
+</html>
