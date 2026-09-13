@@ -1,3 +1,17 @@
+@font-face {
+  font-family: "Geist";
+  src: url("assets/fonts/geist-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  src: url("assets/fonts/geist-mono-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
 :root {
   --ink: #08090b;
   --paper: #f5f5f2;
@@ -5,8 +19,9 @@
   --lime: #d7ff36;
   --muted: #a4a5aa;
   --line: rgba(255, 255, 255, 0.15);
-  --sans: "DM Sans", Arial, sans-serif;
-  --display: "Space Grotesk", Arial, sans-serif;
+  --sans: "Geist", Arial, sans-serif;
+  --display: "Geist", Arial, sans-serif;
+  --mono: "Geist Mono", "Courier New", monospace;
   color-scheme: dark;
 }
 * {
@@ -42,6 +57,20 @@ h2,
 }
 p {
   text-wrap: pretty;
+}
+.eyebrow,
+.announcement,
+.hero-card-bottom,
+.hero-price span,
+.hero-index,
+.badge,
+.filter span,
+.manifesto-notes,
+.scroll-film-copy p,
+.watch-note,
+.watch-specs dt,
+.watch-foot {
+  font-family: var(--mono);
 }
 .announcement {
   height: 32px;

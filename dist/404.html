@@ -5,15 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>FOLKI — Page introuvable</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=optional"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
+      rel="preload"
+      href="/assets/fonts/geist-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <style>
+      @font-face {
+        font-family: "Geist";
+        src: url("/assets/fonts/geist-variable.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Geist Mono";
+        src: url("/assets/fonts/geist-mono-variable.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+      }
       :root {
         --ink: #08090b;
         --paper: #f5f5f2;
@@ -46,7 +59,7 @@
           ),
           var(--ink);
         color: var(--paper);
-        font-family: "DM Sans", system-ui, sans-serif;
+        font-family: "Geist", Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
       }
       body:before {
@@ -73,6 +86,12 @@
       a {
         text-decoration: none;
       }
+      .code,
+      .eyebrow,
+      .meta,
+      footer {
+        font-family: "Geist Mono", "Courier New", monospace;
+      }
       .page {
         position: relative;
         z-index: 1;
@@ -95,8 +114,8 @@
       }
       .brand {
         font:
-          700 1.6rem/1 "Space Grotesk",
-          sans-serif;
+          700 1.6rem/1 "Geist",
+          Arial, sans-serif;
         letter-spacing: -0.09em;
       }
       .brand span {
@@ -134,8 +153,8 @@
       h1 {
         margin: 0 0 24px;
         font:
-          600 clamp(3.3rem, 7vw, 7.8rem) / 0.88 "Space Grotesk",
-          sans-serif;
+          600 clamp(3.3rem, 7vw, 7.8rem) / 0.88 "Geist",
+          Arial, sans-serif;
         letter-spacing: -0.075em;
         text-wrap: balance;
       }
