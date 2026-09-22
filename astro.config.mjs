@@ -29,9 +29,10 @@ const preserveFolkiAssets = {
 export default defineConfig({
   output: "static",
   outDir: "./astro-dist",
-  publicDir: false,
+  publicDir: "./public",
   build: {
     format: "file",
   },
   integrations: [preserveFolkiAssets],
 });
+
