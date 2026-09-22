@@ -3,7 +3,7 @@ import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "astro/config";
 
-const legacyRoot = fileURLToPath(new URL("./dist/", import.meta.url));
+const legacyRoot = fileURLToPath(new URL("./legacy-site/", import.meta.url));
 
 const preserveFolkiAssets = {
   name: "preserve-folki-assets",
@@ -28,8 +28,8 @@ const preserveFolkiAssets = {
 
 export default defineConfig({
   output: "static",
-  outDir: "./astro-dist",
-  publicDir: "./public",
+  outDir: "./dist",
+  publicDir: false,
   build: {
     format: "file",
   },

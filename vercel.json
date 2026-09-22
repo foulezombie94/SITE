@@ -3,8 +3,8 @@
   "framework": "astro",
   "installCommand": "npm install astro@7.3.2 --no-audit --no-fund",
   "buildCommand": "npm run build",
-  "outputDirectory": "astro-dist",
-  "routes": [
+  "outputDirectory": "dist",
+  "routes": [`n    { "src": "/erreur-test-mascotte", "dest": "/erreur-test-mascotte.html" },
     {
       "src": "/montres/(azur|emeraude|minuit)",
       "dest": "/product.html?watch=$1"
@@ -13,3 +13,4 @@
     { "src": "/(.*)", "status": 404, "dest": "/404.html" }
   ]
 }
+
