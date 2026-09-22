@@ -1,16 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
-  "installCommand": "npm install astro@7.3.2 --no-audit --no-fund",
+  "installCommand": "npm ci --no-audit --no-fund",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "routes": [`n    { "src": "/erreur-test-mascotte", "dest": "/erreur-test-mascotte.html" },
-    {
-      "src": "/montres/(azur|emeraude|minuit)",
-      "dest": "/product.html?watch=$1"
-    },
+  "routes": [
+    { "src": "/erreur-test-mascotte", "dest": "/erreur-test-mascotte.html" },
+    { "src": "/montres/(azur|emeraude|minuit)", "dest": "/product.html?watch=$1" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "status": 404, "dest": "/404.html" }
   ]
 }
-

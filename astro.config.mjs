@@ -29,7 +29,7 @@ const preserveFolkiAssets = {
 export default defineConfig({
   output: "static",
   outDir: "./dist",
-  publicDir: false,
+  publicDir: "./public",
   build: {
     format: "file",
   },
